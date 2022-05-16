@@ -1,0 +1,21 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">classId</th>
+      <th scope="col">className</th>
+      <th scope="col">NumOfStudent</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="this.loadClassList">
+    <tr *ngFor="let class of this.classSv.classList">
+      <th scope="row">{{this.classSv.classList.indexOf(class)}}</th>
+      <td>{{class._id}}</td>
+      <td>{{class.title}}</td>
+      <td>{{class.students.length}}</td>
+      <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button>
+    </tr>
+
+  </tbody>
+</table>
