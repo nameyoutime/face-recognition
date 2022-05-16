@@ -1,0 +1,25 @@
+<p>Tên môn:</p><p *ngIf="loadClassDetail">{{this.classSv.class.title}}</p>
+<p>Chi tiết môn:</p><p *ngIf="loadClassDetail">{{this.classSv.class.description}}</p>
+<p>Giảng viên:</p><p *ngIf="loadClassDetail">{{this.classSv.class.teacher}}</p>
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">studentId</th>
+      <th scope="col">StudentName</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="this.loadClassDetail">
+    <tr *ngFor="let class of this.classSv.class.students">
+      <th scope="row">{{this.classSv.class.students.indexOf(class)}}</th>
+      <td>{{class}}</td>
+
+      <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
+    </tr>
+
+  </tbody>
+</table>
