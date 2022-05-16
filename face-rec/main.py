@@ -6,7 +6,7 @@ import json
 student = []
 attendance= []
 
-ip = "http://192.168.1.4:8080/api/attendance"
+ip = "http://localhost:8080/api/attendance"
 headers = {u'content-type': u'application/json'}
 
 

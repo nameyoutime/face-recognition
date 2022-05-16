@@ -79,14 +79,20 @@ router.put('/id', async (req, res) => {
         let array = find.arr;
         let findIndex = array.findIndex((val) => val.student.sid == parseInt(sid) && val.student.fullName == fullName);
         if (findIndex => 0) {
-            let set = array[findIndex]._id;
-            result = await AttendanceDB.updateOne(
-                { _id: mongoose.Types.ObjectId(id), "arr._id": mongoose.Types.ObjectId(set) },
-                { $set: { "arr.$.absence": false, "arr.$.date": Date.now() } }
-            )
-        } else {
-            result = "can't find students";
+            if (array[findIndex].absence == true) {
+                console.log(array[findIndex].absence)
+                let set = array[findIndex]._id;
+                result = await AttendanceDB.updateOne(
+                    { _id: mongoose.Types.ObjectId(id), "arr._id": mongoose.Types.ObjectId(set) },
+                    { $set: { "arr.$.absence": false, "arr.$.date": Date.now() } }
+                )
+            } else {
+                result = "students already attend";
+            }
+        }else{
+                result = "can't find students"
         }
+
     } catch (error) {
         result = error;
     }
