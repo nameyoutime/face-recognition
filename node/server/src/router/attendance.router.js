@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         date: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
     }
     try {
-        let query = await AttendanceDB.find({ date: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() })
+        let query = await AttendanceDB.find({ class:mongoose.Types.ObjectId(attendance.class),date: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() })
         if (query.length == 0) {
             result = new AttendanceDB(temp);
             await result.save();
