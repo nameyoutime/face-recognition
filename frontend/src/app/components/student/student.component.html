@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody >
-    <tr *ngFor="let student of this.studentList">
+    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
       <th scope="row">{{this.studentList.indexOf(student)}}</th>
       <td>{{student.sid}}</td>
       <td>{{student.fullName}}</td>
@@ -20,7 +20,7 @@
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteStudent"(click)="getStudentDetail(student.sid)" >Delete</button>
       </td>
     </tr>
-
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Student</button>

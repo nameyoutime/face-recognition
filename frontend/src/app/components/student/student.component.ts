@@ -13,6 +13,7 @@ export class StudentComponent implements OnInit {
   addStudentForm: FormGroup
   studentList: any;
   student: any;
+  p:any=1
   constructor(public studentSv: StudentService, private route: Router, private fb: FormBuilder) {
     this.getStudent();
 

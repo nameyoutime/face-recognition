@@ -37,7 +37,7 @@ export class StudentService {
     })
   }
   deleteStudentById(Id: any) {
-    console.log(Id)
+
     return this.http.delete(`${environment.api}student/${Id}`)
   }
 

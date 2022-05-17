@@ -11,6 +11,7 @@ import { ClassService } from 'src/app/services/class.service';
 export class ClassComponent implements OnInit {
 
   loadClassList: boolean = false
+  p:any=1
   constructor(public classSv: ClassService,public route:Router) {
     this.getClass()
   }

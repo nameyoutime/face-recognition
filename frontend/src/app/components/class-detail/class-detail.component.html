@@ -1,4 +1,4 @@
-<p>Tên môn:</p><p >{{this.classDetail.title}}</p>
+<p>Tên môn:</p><p >{{this.classDetail.title || ""}}</p>
 <p>Chi tiết môn:</p><p>{{this.classDetail.description}}</p>
 <p>Giảng viên:</p><p>{{this.classDetail.teacher}}</p>
 
@@ -14,9 +14,11 @@
     </tr>
   </thead>
   <tbody >
-    <tr *ngFor="let class of this.classDetail.students">
-      <th scope="row">{{this.classDetail.students.indexOf(class)}}</th>
-      <td>{{class}}</td>
+    <tr *ngFor="let classStudent of this.classStudentList">
+      <th scope="row">{{this.classStudentList.indexOf(classStudent)}}</th>
+      <td>{{classStudent.sid}}</td>
+      <td>{{classStudent.fullName}}</td>
+
 
       <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
     </tr>
