@@ -1,0 +1,176 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student Id</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="row">{{this.studentList.indexOf(student)}}</th>
+      <td>{{student.sid}}</td>
+      <td>{{student.fullName}}</td>
+      <td>{{student.description}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewStudentInfo" (click)="getStudentDetail(student.sid)">View detail</button>
+        <button type="button" class="btn btn-warning"data-toggle="modal" data-target="#UpdateStudent" (click)="getStudentDetail(student.sid)">Update</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeleteStudent"(click)="getStudentDetail(student.sid)" >Delete</button>
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Student</button>
+<div class="modal fade" id="viewStudentInfo" tabindex="-1" role="dialog" aria-labelledby="viewStudentInfoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> STUDENT INFOMATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateStudentForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Student Id</label>
+            <div class="col-sm-10">
+              <input type="text"  readonly class="form-control-plaintext" id="staticEmail" formControlName="studentId">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-10">
+              <input  class="form-control" readonly id="inputPassword" placeholder="Full Name" formControlName="studentName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <input  class="form-control" readonly id="inputPassword" placeholder="Description" formControlName="studentDescription">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="AddStudentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> ADD STUDENT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addStudentForm">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
+            <div class="col-sm-10">
+              <input  class="form-control"  id="inputPassword" placeholder="Full Name" formControlName="studentName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <input  class="form-control"  id="inputPassword" placeholder="Description" formControlName="studentDescription">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addStudent()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="UpdateStudent" tabindex="-1" role="dialog" aria-labelledby="UpdateStudentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">UPDATE STUDENT INFOMATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateStudentForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Student Id</label>
+            <div class="col-sm-10">
+              <input type="text"  readonly class="form-control-plaintext" id="staticEmail" formControlName="studentId">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-10">
+              <input  class="form-control" id="inputPassword" placeholder="Full Name" formControlName="studentName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <input  class="form-control" id="inputPassword" placeholder="Description" formControlName="studentDescription">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="updateStudent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="DeleteStudent" tabindex="-1" role="dialog" aria-labelledby="DeleteStudentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE STUDENT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateStudentForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Student Id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="studentId">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-10">
+              <input  class="form-control" readonly id="inputPassword" placeholder="Full Name" formControlName="studentName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <input  class="form-control" readonly id="inputPassword" placeholder="Description" formControlName="studentDescription">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger"  data-dismiss="modal" (click)="deleteStudent()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

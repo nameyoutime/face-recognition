@@ -9,13 +9,15 @@
     </tr>
   </thead>
   <tbody *ngIf="this.loadClassList">
-    <tr *ngFor="let class of this.classSv.classList">
+    <tr *ngFor="let class of this.classSv.classList |paginate: { itemsPerPage: 10, currentPage: p }">
       <th scope="row">{{this.classSv.classList.indexOf(class)}}</th>
       <td>{{class._id}}</td>
       <td>{{class.title}}</td>
       <td>{{class.students.length}}</td>
       <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button>
     </tr>
-
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
+
+

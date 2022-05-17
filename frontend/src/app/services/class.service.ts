@@ -19,11 +19,8 @@ export class ClassService {
 
 
   }
-  async getClassById(Id: any) {
-        this.http.get(`${environment.api}class/${Id}`).subscribe(data => {
-        this.class = data
-        this.class=this.class?.data
-      })
+   getClassById(Id: any) {
+       return this.http.get(`${environment.api}class/${Id}`)
 
   }
   async createClass(students: Array<any>, title: any, description: any, teacher: any) {
