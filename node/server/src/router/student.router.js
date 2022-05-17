@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
 router.get('/:sid', async (req, res) => {
     let { sid } = req.params;
     try {
-        let result = await StudentDB.find({ sid: sid });
+        let result = await StudentDB.findOne({sid:sid})
         res.send({ result: result });
     } catch (error) {
         res.send({ error: error });
