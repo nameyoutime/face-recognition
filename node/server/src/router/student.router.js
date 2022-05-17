@@ -40,6 +40,7 @@ router.post('/', async (req, res) => {
 
 })
 
+
 router.get('/:sid', async (req, res) => {
     let { sid } = req.params;
     try {
@@ -74,4 +75,13 @@ router.delete('/:sid', async (req, res) => {
 
 })
 
+router.get('/id/:id', async (req, res) => {
+    let { id } = req.params;
+    try {
+        let result = await StudentDB.findById(id);
+        res.send({ result: result });
+    } catch (error) {
+        res.send({ error: error });
+    }
+})
 module.exports = router;
