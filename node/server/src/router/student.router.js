@@ -17,15 +17,17 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     let { student } = req.body;
     let result;
+    
     try {
         let query = await StudentDB.find({ 'fullName': { "$in": student.fullName } }).count();
         if (query <= 0) {
-            let count = await StudentDB.countDocuments();
+            let count = await StudentDB.find().sort({_id:-1}).limit(1);
             let temp = {
                 ...student,
-                sid: count + 1
+                sid: count[0].sid + 1
             }
             result = new StudentDB(temp);
+            
             await result.save();
         } else {
             result = "already exist";
