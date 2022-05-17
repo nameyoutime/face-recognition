@@ -1,6 +1,6 @@
-<p>Tên môn:</p><p *ngIf="loadClassDetail">{{this.classSv.class.title}}</p>
-<p>Chi tiết môn:</p><p *ngIf="loadClassDetail">{{this.classSv.class.description}}</p>
-<p>Giảng viên:</p><p *ngIf="loadClassDetail">{{this.classSv.class.teacher}}</p>
+<p>Tên môn:</p><p >{{this.classDetail.title || ""}}</p>
+<p>Chi tiết môn:</p><p>{{this.classDetail.description}}</p>
+<p>Giảng viên:</p><p>{{this.classDetail.teacher}}</p>
 
 
 
@@ -13,10 +13,12 @@
       <th scope="col">Function</th>
     </tr>
   </thead>
-  <tbody *ngIf="this.loadClassDetail">
-    <tr *ngFor="let class of this.classSv.class.students">
-      <th scope="row">{{this.classSv.class.students.indexOf(class)}}</th>
-      <td>{{class}}</td>
+  <tbody >
+    <tr *ngFor="let classStudent of this.classStudentList">
+      <th scope="row">{{this.classStudentList.indexOf(classStudent)}}</th>
+      <td>{{classStudent.sid}}</td>
+      <td>{{classStudent.fullName}}</td>
+
 
       <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
     </tr>
