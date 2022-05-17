@@ -68,4 +68,15 @@ router.delete('/:id', async (req, res) => {
 
 })
 
+router.get('/teacher/:id', async (req, res) => {
+    let { id } = req.params;
+    try {
+        let data = await ClassDB.find({teacher:mongoose.Types.ObjectId(id)});
+        res.send({ data: data })
+    } catch (error) {
+        res.send({ error: error })
+    }
+
+})
+
 module.exports = router;

@@ -99,4 +99,14 @@ router.put('/id', async (req, res) => {
     res.send({ result: result });
 
 })
+router.get('/class/:id', async (req, res) => {
+    let { id } = req.params;
+    try {
+        let data = await AttendanceDB.find({class:mongoose.Types.ObjectId(id)});
+        res.send({ data: data })
+    } catch (error) {
+        res.send({ error: error })
+    }
+
+})
 module.exports = router;
