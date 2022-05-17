@@ -8,8 +8,9 @@ import { ClassService } from 'src/app/services/class.service';
   styleUrls: ['./class-detail.component.scss']
 })
 export class ClassDetailComponent implements OnInit {
-  loadClassDetail: boolean = false;
+
   Id: any;
+  classDetail: any
   constructor(public classSv: ClassService, public acRoute: ActivatedRoute) {
     this.acRoute.params.subscribe((param: any) => {
       this.Id = param?.id
@@ -24,9 +25,8 @@ export class ClassDetailComponent implements OnInit {
 
   }
   async getClassDetail() {
-
-    await this.classSv.getClassById(this.Id).then(() => {
-      this.loadClassDetail = true
+    await this.classSv.getClassById(this.Id).subscribe((data: any) => {
+      this.classDetail = data.data
     })
   }
 
