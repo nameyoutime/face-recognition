@@ -28,5 +28,8 @@ export class ClassComponent implements OnInit {
   getClassDetail(Id: any) {
     this.route.navigate(["table/class",Id]);
   }
+  createClass() {
+    this.route.navigate(["table/createclass"]);
+  }
 
 }

@@ -11,42 +11,41 @@ export class ClassService {
   constructor(public http: HttpClient) { }
 
   async getClass() {
-     this.http.get(`${environment.api}class/`).subscribe((data) => {
-      this.classList=data
-      this.classList=this.classList?.data
+    this.http.get(`${environment.api}class/`).subscribe((data) => {
+      this.classList = data
+      this.classList = this.classList?.data
     })
 
 
 
   }
-   getClassById(Id: any) {
-       return this.http.get(`${environment.api}class/${Id}`)
+  getClassById(Id: any) {
+    return this.http.get(`${environment.api}class/${Id}`)
 
   }
-  async createClass(students: Array<any>, title: any, description: any, teacher: any) {
-    try {
-      await this.http.post(`${environment.api}class/`, {
+  createClass(students: Array<any>, title: any, description: any, teacher: any) {
+
+    return this.http.post(`${environment.api}class/`, {
+      classes: {
         students: students,
         title: title,
         description: description,
         teacher: teacher,
-      })
-    } catch (e) {
-      alert("Lỗi");
-    }
+      }
+
+    })
+
 
   }
   async updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any) {
-    try {
-      await this.http.put(`${environment.api}class/${Id}`, {
-        students: students,
-        title: title,
-        description: description,
-        teacher: teacher,
-      })
-    } catch (e) {
-      alert("lỗi")
-    }
+
+    this.http.put(`${environment.api}class/${Id}`, {
+      students: students,
+      title: title,
+      description: description,
+      teacher: teacher,
+    })
+
   }
   async deleteClassById(Id: any) {
     try {

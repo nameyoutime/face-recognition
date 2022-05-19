@@ -1,6 +1,9 @@
-<p>Tên môn:</p><p >{{this.classDetail.title || ""}}</p>
-<p>Chi tiết môn:</p><p>{{this.classDetail.description}}</p>
-<p>Giảng viên:</p><p>{{this.classDetail.teacher}}</p>
+<p>Tên môn:</p>
+<p>{{this.classDetail.title || ""}}</p>
+<p>Chi tiết môn:</p>
+<p>{{this.classDetail.description}}</p>
+<p>Giảng viên:</p>
+<p>{{this.classDetail.teacher}}</p>
 
 
 
@@ -13,15 +16,64 @@
       <th scope="col">Function</th>
     </tr>
   </thead>
-  <tbody >
-    <tr *ngFor="let classStudent of this.classStudentList">
+  <tbody>
+    <tr *ngFor="let classStudent of this.classStudentList| paginate: { itemsPerPage: 10, currentPage: p }">
       <th scope="row">{{this.classStudentList.indexOf(classStudent)}}</th>
       <td>{{classStudent.sid}}</td>
       <td>{{classStudent.fullName}}</td>
 
 
       <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
+      <button class="btn btn-primary" >Remove From Class</button>
     </tr>
-
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
+<button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent" >Add Student For This Class</button>
+<button class="btn btn-primary" >Create Attendance For This Class</button>
+
+
+<div class="modal fade bd-example-modal-lg"  id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD STUDENT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Id</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+            <th scope="row">{{this.studentList.indexOf(student)}}</th>
+            <td>{{student.sid}}</td>
+            <td>{{student.fullName}}</td>
+            <td>{{student.description}}</td>
+            <td>
+              <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
+            </td>
+          </tr>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </tbody>
+
+      </table>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" >Save changes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

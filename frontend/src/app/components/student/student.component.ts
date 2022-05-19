@@ -40,7 +40,7 @@ export class StudentComponent implements OnInit {
 
   }
   async getStudentDetail(Id: any) {
-    let temp = this.studentSv.getStudentById(Id)
+    let temp = this.studentSv.getStudentBySId(Id)
     temp.subscribe((data: any) => {
       this.patchFormValue(data)
     })
