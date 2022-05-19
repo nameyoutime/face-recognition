@@ -12,7 +12,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TeacherComponent,
+
 
 
 

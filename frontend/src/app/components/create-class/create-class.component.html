@@ -1,0 +1,43 @@
+<form [formGroup]="createClassForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Class Name</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      placeholder="Class Name" formControlName="title">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Class Description</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Class Description" formControlName="description">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Choose Teacher</label>
+    <select class="form-control form-control-lg" formControlName="teacher">
+      <option *ngFor="let teacher of this.teacherList"   [value]="teacher._id">{{teacher.fullName}}</option>
+    </select>
+  </div>
+</form>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student Id</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="row">{{this.studentList.indexOf(student)}}</th>
+      <td>{{student.sid}}</td>
+      <td>{{student.fullName}}</td>
+      <td>{{student.description}}</td>
+      <td>
+        <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="createClass()">Submit</button>
