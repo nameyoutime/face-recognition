@@ -15,16 +15,12 @@ export class ClassService {
       this.classList = data
       this.classList = this.classList?.data
     })
-
-
-
   }
   getClassById(Id: any) {
     return this.http.get(`${environment.api}class/${Id}`)
 
   }
   createClass(students: Array<any>, title: any, description: any, teacher: any) {
-
     return this.http.post(`${environment.api}class/`, {
       classes: {
         students: students,
@@ -32,29 +28,17 @@ export class ClassService {
         description: description,
         teacher: teacher,
       }
-
     })
-
-
   }
   async updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any) {
-
-    this.http.put(`${environment.api}class/${Id}`, {
+    return this.http.put(`${environment.api}class/${Id}`, {
       students: students,
       title: title,
       description: description,
       teacher: teacher,
     })
-
   }
   async deleteClassById(Id: any) {
-    try {
-      await this.http.delete(`${environment.api}class/${Id}`).subscribe(() => {
-        alert("Thành công")
-      })
-    } catch (e) {
-      alert("lỗi")
-    }
+    return this.http.delete(`${environment.api}class/${Id}`)
   }
-
 }

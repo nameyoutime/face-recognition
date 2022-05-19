@@ -6,12 +6,13 @@ import { CreateClassComponent } from 'src/app/components/create-class/create-cla
 import { StudentComponent } from 'src/app/components/student/student.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 
 
 
 @NgModule({
   declarations: [ClassComponent, ClassDetailComponent, CreateClassComponent,
-    StudentComponent,],
+    StudentComponent,TeacherComponent,],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,6 +22,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
   ],
-  exports: [ClassComponent, ClassDetailComponent, CreateClassComponent, StudentComponent,ReactiveFormsModule,FormsModule,NgxPaginationModule]
+  exports: [ClassComponent, ClassDetailComponent, CreateClassComponent, StudentComponent,ReactiveFormsModule,FormsModule,NgxPaginationModule,TeacherComponent]
 })
 export class ShareModule { }

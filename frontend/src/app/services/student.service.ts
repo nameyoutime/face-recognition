@@ -11,9 +11,6 @@ export class StudentService {
   constructor(private http: HttpClient) { }
   async getStudent() {
     return this.http.get(`${environment.api}student/`)
-
-
-
   }
   getStudentBySId(id: any) {
     return this.http.get(`${environment.api}student/${id}`)
@@ -38,11 +35,9 @@ export class StudentService {
         fullName: name,
         description: description,
       }
-
     })
   }
   deleteStudentById(Id: any) {
-
     return this.http.delete(`${environment.api}student/${Id}`)
   }
 

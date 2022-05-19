@@ -12,4 +12,33 @@ export class TeacherService {
   async getTeacherList() {
     return this.http.get(`${environment.api}teacher`)
   }
+  addTeacher(name: any, userName: any, passWord: any, role: any) {
+    return this.http.post(`${environment.api}teacher/`, {
+      teacher: {
+        userName: userName,
+        password: passWord,
+        fullName: name,
+        role: role
+      }
+
+    })
+  }
+  getTeacherInfo(Id:any){
+    return this.http.get(`${environment.api}teacher/${Id}`)
+  }
+  updateTeacher(teacherId: any, name: any, userName: any, passWord: any, role: any) {
+    return this.http.put(`${environment.api}teacher/${teacherId}`, {
+      teacher: {
+        userName: userName,
+        password: passWord,
+        fullName: name,
+        role: role
+      }
+
+    })
+  }
+  deleteTeacher(teacherId: any) {
+    return this.http.delete(`${environment.api}teacher/${teacherId}`, {
+    })
+  }
 }
