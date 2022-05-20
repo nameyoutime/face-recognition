@@ -49,8 +49,9 @@ router.put('/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
+    
     try {
-        let data = await ClassDB.findById(id);
+        let data = await ClassDB.findById(id).populate('teacher').populate('students');
         res.send({ data: data })
     } catch (error) {
         res.send({ error: error })
