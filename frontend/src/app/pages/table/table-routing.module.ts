@@ -7,11 +7,18 @@ import { TableComponent } from './table.component';
 import { CreateClassComponent } from 'src/app/components/create-class/create-class.component';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 
-const routes: Routes = [{ path: '', component: TableComponent },{path:'class',component:ClassComponent},
-{path:'class/:id',component:ClassDetailComponent},
-{path:'createclass',component:CreateClassComponent},
-{path:'student',component:StudentComponent},{path:'student/:id',component:ClassDetailComponent},
-{path:'teacher',component:TeacherComponent}];
+const routes: Routes = [{
+  path: '', component: TableComponent, children: [
+    { path: 'class', component: ClassComponent },
+    { path: 'class/:id', component: ClassDetailComponent },
+    { path: 'createclass', component: CreateClassComponent },
+    { path: 'student', component: StudentComponent },
+    { path: 'student/:id', component: ClassDetailComponent },
+    { path: 'teacher', component: TeacherComponent }]
+},
+
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
