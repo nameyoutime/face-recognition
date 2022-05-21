@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
         ...attendance,
         date: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
     }
+    
     try {
         let query = await AttendanceDB.find({ class:mongoose.Types.ObjectId(attendance.class),date: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() })
         if (query.length == 0) {
