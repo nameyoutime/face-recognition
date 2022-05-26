@@ -27,4 +27,7 @@ export class AttendanceService {
   getAttendance(Id: any) {
     return this.http.get(`${environment.api}attendance/id?id=${Id}`)
   }
+  saveAttendance(attendance:any){
+    // return this.http.put(`${environment.api}attendance/`)
+  }
 }

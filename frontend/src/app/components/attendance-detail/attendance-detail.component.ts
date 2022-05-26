@@ -8,10 +8,11 @@ import { AttendanceService } from 'src/app/services/attendance.service';
   styleUrls: ['./attendance-detail.component.scss']
 })
 export class AttendanceDetailComponent implements OnInit {
-  p: any;
-  Id: any;
-  studentList: Array<any> = [];
-  constructor(private acRoute: ActivatedRoute, private attendSvc: AttendanceService, private route: Router) {
+ p:any;
+ Id:any;
+ studentList:Array<any>=[];
+ attendanceDetail:any;
+  constructor(private acRoute:ActivatedRoute,private attendSvc:AttendanceService,private route:Router) {
     this.acRoute.params.subscribe((param: any) => {
       this.Id = param?.id
 
@@ -21,12 +22,16 @@ export class AttendanceDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getAttendance()
   }
-  getAttendance() {
-    this.attendSvc.getAttendance(this.Id).subscribe((data: any) => {
-      console.log(data.data)
-      // this.studentList=data.data.arr
+  getAttendance(){
+    this.attendSvc.getAttendance(this.Id).subscribe((data:any)=>{
+      this.attendanceDetail=data.data
+      this.studentList=data.data.arr
     })
   }
+  saveChange(){
+    this.attendanceDetail.arr=this.studentList;
 
+
+  }
 
 }
