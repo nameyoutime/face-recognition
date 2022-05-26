@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AttendanceService } from 'src/app/services/attendance.service';
 import { ClassService } from 'src/app/services/class.service';
 import { StudentService } from 'src/app/services/student.service';
 
@@ -14,9 +15,10 @@ export class ClassDetailComponent implements OnInit {
   classDetail: any;
   p: any;
   classStudentList: Array<any> = [];
-  studentList:Array<any>=[];
-  notExistStudentList:Array<any>=[];
-  constructor(private classSv: ClassService, public acRoute: ActivatedRoute, private studentSv: StudentService) {
+  studentList: Array<any> = [];
+  notExistStudentList: Array<any> = [];
+
+  constructor(private classSv: ClassService, public acRoute: ActivatedRoute, private studentSv: StudentService, private attendSvc: AttendanceService) {
     this.acRoute.params.subscribe((param: any) => {
       this.Id = param?.id
       this.getClassDetail()
@@ -44,8 +46,13 @@ export class ClassDetailComponent implements OnInit {
       })
     })
   }
- async updateClass(){
+  async updateClass() {
 
+  }
+  async createAttendance() {
+    await this.attendSvc.createAttendance(this.Id, this.studentList).subscribe((data: any) => {
+      console.log(data)
+    })
   }
 
 }

@@ -30,7 +30,41 @@
   </tbody>
 </table>
 <button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent" >Add Student For This Class</button>
-<button class="btn btn-primary" >Create Attendance For This Class</button>
+<button class="btn btn-primary"  (click)="createAttendance()">Create Attendance For This Class</button>
+<button class="btn btn-primary" ></button>
+
+
+
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">studentId</th>
+      <th scope="col">StudentName</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let classStudent of this.classStudentList| paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="row">{{this.classStudentList.indexOf(classStudent)}}</th>
+      <td>{{classStudent.sid}}</td>
+      <td>{{classStudent.fullName}}</td>
+
+
+      <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
+      <button class="btn btn-primary" >Remove From Class</button>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+</table>
+
+
+
+
+
 
 
 <div class="modal fade bd-example-modal-lg"  id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
