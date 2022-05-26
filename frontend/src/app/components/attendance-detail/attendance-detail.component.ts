@@ -17,7 +17,7 @@ export class AttendanceDetailComponent implements OnInit {
       this.Id = param?.id
 
     });
-   }
+  }
 
   ngOnInit(): void {
     this.getAttendance()
