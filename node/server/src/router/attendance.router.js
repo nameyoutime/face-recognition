@@ -103,7 +103,7 @@ router.put('/id', async (req, res) => {
 router.get('/class/:id', async (req, res) => {
     let { id } = req.params;
     try {
-        let data = await AttendanceDB.find({class:mongoose.Types.ObjectId(id)});
+        let data = await AttendanceDB.find({class:mongoose.Types.ObjectId(id)}).populate("student");
         res.send({ data: data })
     } catch (error) {
         res.send({ error: error })
