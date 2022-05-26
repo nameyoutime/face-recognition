@@ -61,7 +61,7 @@ router.get('/id', async (req, res) => {
     let { id } = req.query;
     let data = "";
     try {
-        data = await AttendanceDB.findById(id).populate('students');
+        data = await AttendanceDB.findById(id).populate('students').populate('arr.student');
     } catch (error) {
         data = "error"
     }
