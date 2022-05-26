@@ -56,7 +56,7 @@ export class ClassDetailComponent implements OnInit {
   }
   async getAllAttendance() {
     await this.attendSvc.getAttendanceByClass(this.Id).subscribe((data: any) => {
-      console.log(data.data)
+      console.log(data)
       this.attendanceList=data.data
     });
   }

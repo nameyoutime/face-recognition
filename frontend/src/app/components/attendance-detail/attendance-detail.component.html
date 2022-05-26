@@ -1,0 +1,24 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student Id</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+      <th scope="row">{{this.studentList.indexOf(student)}}</th>
+      <td>{{student.sid}}</td>
+      <td>{{student.fullName}}</td>
+      <td>{{student.description}}</td>
+      <td>
+        <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
+      </td>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+
+</table>
