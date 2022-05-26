@@ -21,6 +21,9 @@ export class AttendanceService {
       }
     })
   }
+  getAttendanceByClass(classId:any){
+    return this.http.get(`${environment.api}attendance/class/${classId}`)
+  }
   getAttendance(Id: any) {
     return this.http.get(`${environment.api}attendance/id?id=${Id}`)
   }

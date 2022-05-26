@@ -6,6 +6,7 @@ import { ClassComponent } from 'src/app/components/class/class.component';
 import { TableComponent } from './table.component';
 import { CreateClassComponent } from 'src/app/components/create-class/create-class.component';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
+import { AttendanceDetailComponent } from 'src/app/components/attendance-detail/attendance-detail.component';
 
 const routes: Routes = [{
   path: '', component: TableComponent, children: [
@@ -14,7 +15,9 @@ const routes: Routes = [{
     { path: 'createclass', component: CreateClassComponent },
     { path: 'student', component: StudentComponent },
     { path: 'student/:id', component: ClassDetailComponent },
-    { path: 'teacher', component: TeacherComponent }]
+    { path: 'teacher', component: TeacherComponent },
+    { path: 'attendance/:id', component: AttendanceDetailComponent },
+  ]
 },
 
 
