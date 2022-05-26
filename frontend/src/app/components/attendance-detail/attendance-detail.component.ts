@@ -23,7 +23,7 @@ export class AttendanceDetailComponent implements OnInit {
   }
   getAttendance(){
     this.attendSvc.getAttendance(this.Id).subscribe((data:any)=>{
-      console.log(data.data.arr)
+      console.log(data.data)
       this.studentList=data.data.arr
     })
   }
