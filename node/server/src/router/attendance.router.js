@@ -47,6 +47,17 @@ router.delete('/:id', async (req, res) => {
     }
 
 })
+router.put('/:id', async (req, res) => {
+    let { id } = req.params;
+    let {attendance} = req.body;
+    try {
+        let data = await AttendanceDB.findByIdAndUpdate(id,attendance);
+        res.send({ data: data })
+    } catch (error) {
+        res.send({ error: error })
+    }
+
+})
 
 // router.get('/test', async (req, res) => {
 //     let { id } = req.query;
