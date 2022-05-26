@@ -6,7 +6,7 @@ const ClassDB = mongoose.model('Class', ClassSchema);
 
 router.get('/', async (req, res) => {
     try {
-        let data = await ClassDB.find();
+        let data = await ClassDB.find().populate('teacher');
         res.send({ data: data })
     } catch (error) {
         res.send({ error: error })
@@ -49,8 +49,9 @@ router.put('/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
+    
     try {
-        let data = await ClassDB.findById(id);
+        let data = await ClassDB.findById(id).populate('teacher').populate('students');
         res.send({ data: data })
     } catch (error) {
         res.send({ error: error })
