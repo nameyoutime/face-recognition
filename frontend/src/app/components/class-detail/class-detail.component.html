@@ -24,16 +24,49 @@
 
 
       <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
-      <button class="btn btn-primary" >Remove From Class</button>
+      <button class="btn btn-primary">Remove From Class</button>
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
-<button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent" >Add Student For This Class</button>
-<button class="btn btn-primary" >Create Attendance For This Class</button>
+<button class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Student For This Class</button>
+<button class="btn btn-primary" (click)="createAttendance()">Create Attendance For This Class</button>
+<button class="btn btn-primary" (click)="getAllAttendance()">Get All Attendance</button>
 
 
-<div class="modal fade bd-example-modal-lg"  id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">IsOpen</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let attendance of this.attendanceList| paginate: { itemsPerPage: 10, currentPage: ap }">
+      <th scope="row">{{this.attendanceList.indexOf(attendance)}}</th>
+      <td>{{attendance.date}}</td>
+      <td>{{attendance.isOpen}}</td>
+      <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
+      <button class="btn btn-primary"  (click)="getAttendance(attendance._id)">Detail</button>
+    </tr>
+    <pagination-controls (pageChange)="ap = $event"></pagination-controls>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg" id="AddStudent" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -68,12 +101,9 @@
       </table>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"  data-dismiss="modal" >Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
       </div>
     </div>
 
   </div>
 </div>
-
-
-
