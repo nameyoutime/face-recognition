@@ -11,14 +11,16 @@
   <tbody>
     <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
       <th scope="row">{{this.studentList.indexOf(student)}}</th>
-      <td>{{student.sid}}</td>
-      <td>{{student.fullName}}</td>
-      <td>{{student.description}}</td>
+      <td>{{student.student.sid}}</td>
+      <td>{{student.student.fullName}}</td>
+      <td>{{student.student.description}}</td>
       <td>
-        <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
+        <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
       </td>
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 
 </table>
+
+<button class="btn btn-primary"  (click)="saveChange()">Save Changes</button>

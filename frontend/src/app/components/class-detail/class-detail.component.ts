@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AttendanceService } from 'src/app/services/attendance.service';
 import { ClassService } from 'src/app/services/class.service';
 import { StudentService } from 'src/app/services/student.service';
@@ -14,13 +15,13 @@ export class ClassDetailComponent implements OnInit {
   Id: any;
   classDetail: any;
   p: any;
-  ap:any;
+  ap: any;
   classStudentList: Array<any> = [];
   studentList: Array<any> = [];
   notExistStudentList: Array<any> = [];
   attendanceList: Array<any> = [];
 
-  constructor(private classSv: ClassService, public acRoute: ActivatedRoute, private studentSv: StudentService, private attendSvc: AttendanceService, private route:Router) {
+  constructor(private classSv: ClassService, public acRoute: ActivatedRoute, private studentSv: StudentService, private attendSvc: AttendanceService, private route: Router) {
     this.acRoute.params.subscribe((param: any) => {
       this.Id = param?.id
       this.getClassDetail();
@@ -43,21 +44,30 @@ export class ClassDetailComponent implements OnInit {
       this.getClassStudentList(data.data.students);
     });
   }
-   getClassStudentList(studentArray: Array<any>) {
+  getClassStudentList(studentArray: Array<any>) {
     this.classStudentList = studentArray;
   }
   async updateClass() {
 
   }
   async createAttendance() {
-    await this.attendSvc.createAttendance(this.Id, this.studentList).subscribe((data: any) => {
-      console.log(data);
+    await this.attendSvc.createAttendance(this.Id, this.classStudentList).subscribe((data: any) => {
+      try {
+        if (data.data == 'already create on this day') {
+          throw new Error(data.data);
+        }
+        else {
+          alert("Create Attendance Completed")
+          this.getAllAttendance();
+        }
+      } catch (err) {
+        alert(err)
+      }
     });
   }
   async getAllAttendance() {
     await this.attendSvc.getAttendanceByClass(this.Id).subscribe((data: any) => {
-      console.log(data)
-      this.attendanceList=data.data
+      this.attendanceList = data.data
     });
   }
   getAttendance(Id: any) {
