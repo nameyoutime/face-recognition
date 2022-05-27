@@ -26,10 +26,12 @@ export class AttendanceDetailComponent implements OnInit {
     this.attendSvc.getAttendance(this.Id).subscribe((data:any)=>{
       this.attendanceDetail=data.data
       this.studentList=data.data.arr
+      console.log(this.studentList)
     })
   }
   saveChange(){
     this.attendanceDetail.arr=this.studentList;
+    console.log(this.attendanceDetail)
 
 
   }

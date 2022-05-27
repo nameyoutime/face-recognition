@@ -67,8 +67,9 @@ router.delete('/:id', async (req, res) => {
 })
 
 
-router.get('/login', async (req, res) => {
-    let { userName, password } = req.query;
+router.get('/login/:userName', async (req, res) => {
+    let {userName} = req.params;
+    let { password } = req.query;
     try {
         let data = await TeacherDB.find({ $and: [{userName:userName},{password:password}] });
         res.send({ data: data })

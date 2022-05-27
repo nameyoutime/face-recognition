@@ -4,7 +4,7 @@
       <th scope="col">#</th>
       <th scope="col">Student Id</th>
       <th scope="col">Student Name</th>
-      <th scope="col">Description</th>
+      <th scope="col">Date</th>
       <th scope="col">Function</th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
       <th scope="row">{{this.studentList.indexOf(student)}}</th>
       <td>{{student.student.sid}}</td>
       <td>{{student.student.fullName}}</td>
-      <td>{{student.student.description}}</td>
+      <td>{{student.date}}</td>
       <td>
         <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
       </td>

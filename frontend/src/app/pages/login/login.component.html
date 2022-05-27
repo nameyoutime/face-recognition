@@ -1,1 +1,7 @@
-<p>login works!</p>
+<form action="" [formGroup]="loginForm">
+
+  <input type="text" placeholder="Tai khoan" formControlName="username">
+  <input type="password" placeholder="Mat khau" formControlName="password" >
+  <button type="submit" (click)="signIn()">Login</button>
+
+</form>
