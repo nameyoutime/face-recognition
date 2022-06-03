@@ -1,0 +1,145 @@
+<div class="header">
+    <div class="logo">
+      <img src="../../../assets/HSU1.jpg" />
+    </div>
+  
+    <div class="user">
+      <p>[User's name here]</p>
+      <div class="dropdown" style="margin: auto;">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,30">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border: solid 1px #333;">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">About</a>
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#" style="color: red;">Logout</a>
+        </div>
+      </div>
+      <img src="../../../assets/User.png" />
+    </div>
+  </div>
+  
+  <div class="nav">
+    <ul>
+      <li><a href="/table" class="text">HOME</a></li>
+      <li><a href="/class" class="text">CLASS</a></li>
+      <li><a href="/student" class="text">STUDENT</a></li>
+      <li><a href="/teacher" class="text">TEACHER</a></li>
+    </ul>
+  </div>
+  
+  <div class="main">
+    <div class="title">
+      <p>STUDENT TABLE</p>
+    </div>
+    <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddStudent">ADD NEW STUDENT</button>
+  
+    <div class="table-section">
+      <table id="table">
+        <tr class="header-row">
+          <th class="header-item items">Student Id</th>
+          <th class="header-item items">Student Name</th>
+          <th class="header-item items">Description</th>
+          <th class="header-item items">Function</th>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">1</td>
+          <td class="items">Diệp Thiên Thiên</td>
+          <td class="items">Gay</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">2</td>
+          <td class="items">Nguyễn Hoàng Trung</td>
+          <td class="items">Also gay</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">3</td>
+          <td class="items">Lê Thanh Bảo</td>
+          <td class="items">Chad</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">4</td>
+          <td class="items">Phạm Đức Khánh Duy</td>
+          <td class="items">No balls</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">5</td>
+          <td class="items">Đỗ Tuấn Kiệt</td>
+          <td class="items">Fat as f*ck</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">6</td>
+          <td class="items">Hàn Trung Kiêng</td>
+          <td class="items">Kiêng</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">7</td>
+          <td class="items">Minh Long</td>
+          <td class="items">Đupai snakebites</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal fade" id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="AddStudentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> ADD STUDENT</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <form [formGroup]="addStudentForm"></form> -->
+          <form>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
+              <div class="col-sm-10">
+                <input  class="form-control"  id="inputPassword" placeholder="Full Name" formControlName="studentName">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+              <div class="col-sm-10">
+                <input  class="form-control"  id="inputPassword" placeholder="Description" formControlName="studentDescription">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+          <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addStudent()">Add</button> -->
+        </div>
+      </div>
+    </div>
+  </div>

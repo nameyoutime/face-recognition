@@ -1,0 +1,146 @@
+<div class="header">
+    <div class="logo">
+      <img src="../../../assets/HSU1.jpg" />
+    </div>
+  
+    <div class="user">
+      <p>[User's name here]</p>
+      <div class="dropdown" style="margin: auto;">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,30">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border: solid 1px #333;">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">About</a>
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#" style="color: red;">Logout</a>
+        </div>
+      </div>
+      <img src="../../../assets/User.png" />
+    </div>
+  </div>
+  
+  <div class="nav">
+    <ul>
+      <li><a href="/table" class="text">HOME</a></li>
+      <li><a href="/class" class="text">CLASS</a></li>
+      <li><a href="/student" class="text">STUDENT</a></li>
+      <li><a href="/teacher" class="text">TEACHER</a></li>
+    </ul>
+  </div>
+  
+  <div class="main">
+    <div class="title">
+      <p>TEACHER TABLE</p>
+    </div>
+    <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddTeacher">ADD NEW TEACHER</button>
+  
+    <div class="table-section">
+      <table id="table">
+        <tr class="header-row">
+          <th class="header-item items">Teacher Id</th>
+          <th class="header-item items">Teacher Name</th>
+          <th class="header-item items">Teacher UserName</th>
+          <th class="header-item items">Role</th>
+          <th class="header-item items">Function</th>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">1</td>
+          <td class="items">Thầy Tú</td>
+          <td class="items">Tú's</td>
+          <td class="items">[ROLE]</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">2</td>
+          <td class="items">Thầy Hoàng</td>
+          <td class="items">Phoenix</td>
+          <td class="items">[ROLE]</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">3</td>
+          <td class="items">Thầy Sơn</td>
+          <td class="items">PAINt</td>
+          <td class="items">[ROLE]</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">4</td>
+          <td class="items">Thầy Tùng</td>
+          <td class="items">Respect++</td>
+          <td class="items">[ROLE]</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <td class="items">5</td>
+          <td class="items">Thầy Bá Trung</td>
+          <td class="items">Bitcoin</td>
+          <td class="items">[ROLE]</td>
+          <td class="items">
+            <button class="update">UPDATE</button>
+            <button class="delete">DELETE</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal fade" id="AddTeacher" tabindex="-1" role="dialog" aria-labelledby="AddTeacherLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> ADD TEACHER</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <form [formGroup]="addTeacherForm"> -->
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">FullName</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword" placeholder="FullName" formControlName="teacherName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">UserName</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword" placeholder="UserName" formControlName="teacherUserName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">PassWord</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword"  type="password" placeholder="PassWord" formControlName="teacherPassWord">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputPassword1">Choose Role</label>
+            <select class="form-control form-control-lg" formControlName="teacherRole">
+              <option [value]="'teacher'">Teacher</option>
+              <option [value]="'admin'">Admin</option>
+            </select>
+          </div>
+        <!-- </form> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.addTeacher()">Add</button> -->
+      </div>
+    </div>
+  </div>
+</div>
