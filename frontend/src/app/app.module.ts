@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TeacherComponent } from './components/teacher/teacher.component';
+import { AttendanceDetailComponent } from './components/attendance-detail/attendance-detail.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
 
 
 
