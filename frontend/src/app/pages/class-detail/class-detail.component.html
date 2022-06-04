@@ -1,0 +1,263 @@
+<div class="header">
+    <div class="logo">
+      <img src="../../../assets/HSU1.jpg" />
+    </div>
+  
+    <div class="user">
+      <p>[User's name here]</p>
+      <div class="dropdown" style="margin: auto;">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,30">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border: solid 1px #333;">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">About</a>
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#" style="color: red;">Logout</a>
+        </div>
+      </div>
+      <img src="../../../assets/User.png" />
+    </div>
+  </div>
+  
+<div class="nav">
+    <ul>
+      <li><a href="/table" class="text">HOME</a></li>
+      <li><a href="/class" class="text">CLASS</a></li>
+      <li><a href="/student" class="text">STUDENT</a></li>
+      <li><a href="/teacher" class="text">TEACHER</a></li>
+    </ul>
+</div>
+
+<div class="main">
+    <div class="left">
+        <div class="test">
+            <h1>Thông tin lớp 01</h1>
+            <p>Tên: lớp LTHĐT 2</p>
+            <p>Chi tiết môn: LTHĐT</p>
+            <p>Giảng viên: Nguyễn Văn A</p>
+            <p>Sỉ số sinh viên: n</p>
+        </div>
+        <div class="test">
+            <h1>Function</h1>
+            <a class="btn btn-primary btn-lg" href="#">Add student</a>
+            <a class="btn btn-primary btn-lg" href="#">Create attendance</a>
+            <a class="btn btn-primary btn-lg" href="#">Get all attendance</a>
+            <a class="btn btn-primary btn-lg" href="/class">Return to class list</a>
+        </div>
+    </div>
+  
+    <div class="right">
+
+        <div>
+            <div class="title">
+                <p>Student in this class</p>
+            </div>
+            <div class="table-section">
+                <table id="table">
+                  <tr class="header-row">
+                    <th class="header-item items">#</th>
+                    <th class="header-item items">Student Id</th>
+                    <th class="header-item items">Student Name</th>
+                    <th class="header-item items">Function</th>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">1</td>
+                    <td class="items">1</td>
+                    <td class="items">Diệp Thiên Thiên</td>
+                    <td class="items">
+                      <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">2</td>
+                    <td class="items">2</td>
+                    <td class="items">Nguyễn Hoàng Trung</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">3</td>
+                    <td class="items">3</td>
+                    <td class="items">Lê Thanh Bảo</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">4</td>
+                    <td class="items">4</td>
+                    <td class="items">Phạm Đức Khánh Duy</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">5</td>
+                    <td class="items">5</td>
+                    <td class="items">Đỗ Tuấn Kiệt</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">6</td>
+                    <td class="items">6</td>
+                    <td class="items">Hàn Trung Kiêng</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">7</td>
+                    <td class="items">7</td>
+                    <td class="items">Minh Long</td>
+                    <td class="items">
+                        <button class="delete">Remove from class</button>
+                    </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <div class="title">
+                <p>Attendance</p>
+            </div>
+            <div class="table-section">
+                <table id="table">
+                  <tr class="header-row">
+                    <th class="header-item items">#</th>
+                    <th class="header-item items">Date</th>
+                    <th class="header-item items">IsOpen</th>
+                    <th class="header-item items">Function</th>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">1</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">true</td>
+                    <td class="items">
+                        <button class="update" data-toggle="modal" data-target="#Attendance">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">2</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">false</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">3</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">true</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">4</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">false</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">5</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">true</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">6</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">false</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                  <tr class="table-rows">
+                    <td class="items">7</td>
+                    <td class="items">1/6/2022</td>
+                    <td class="items">true</td>
+                    <td class="items">
+                        <button class="update">DETAIL</button>
+                        <button class="delete">DELETE</button>
+                    </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="Attendance" tabindex="-1" role="dialog" aria-labelledby="AttendanceLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ATTENDANCE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">StudentId</th>
+              <th scope="col">StudentName</th>
+              <th scope="col">Date</th>
+              <th scope="col">Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>1</td>
+              <td>Diệp Thiên Thiên</td>
+              <td>1/6/2022</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>2</td>
+              <td>Lê Thanh Bảo</td>
+              <td>1/6/2022</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>3</td>
+              <td>Nguyễn Hoàng Trung</td>
+              <td>1/6/2022</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addStudent()">Add</button> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'class', loadChildren: () => import('./pages/class/class.module').then(m => m.ClassModule) }, 
   { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) }, 
   { path: 'teacher', loadChildren: () => import('./pages/teacher/teacher.module').then(m => m.TeacherModule) },
+  { path: 'class-detail', loadChildren: () => import('./pages/class-detail/class-detail.module').then(m => m.ClassDetailModule) },
 
 ];
 
