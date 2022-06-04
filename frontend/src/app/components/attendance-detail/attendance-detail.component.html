@@ -1,25 +1,64 @@
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Student Id</th>
-      <th scope="col">Student Name</th>
-      <th scope="col">Date</th>
-      <th scope="col">Function</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
-      <th scope="row">{{this.studentList.indexOf(student)}}</th>
-      <td>{{student.student.sid}}</td>
-      <td>{{student.student.fullName}}</td>
-      <td>{{student.date}}</td>
-      <td>
-        <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
-      </td>
-    </tr>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </tbody>
-</table>
+<!-- <div>
+  <table class="table w-50">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student Id</th>
+        <th scope="col">Student Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Function</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+        <th scope="row">{{this.studentList.indexOf(student)}}</th>
+        <td>{{student.student.sid}}</td>
+        <td>{{student.student.fullName}}</td>
+        <td>{{student.date}}</td>
+        <td>
+          <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
+        </td>
+      </tr>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </tbody>
+  </table>
+</div>
 
-<button class="btn btn-primary"  (click)="saveChange()">Save Changes</button>
+
+<button class="btn btn-primary"  (click)="saveChange()">Save Changes</button> -->
+<div class="d-flex justify-content-center p-5">
+  <div class="card" style="width: 90%;">
+    <div class="card-body">
+      <div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Id</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+                <th scope="row">{{this.studentList.indexOf(student)+1}}</th>
+                <td>{{student.student.sid}}</td>
+                <td>{{student.student.fullName}}</td>
+                <td>{{student.date}}</td>
+                <td>
+                  <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          <button class="btn btn-primary" (click)="saveChange()">Save Changes</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

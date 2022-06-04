@@ -1,4 +1,4 @@
-<p>Tên môn:</p>
+<!-- <p>Tên môn:</p>
 <p>{{this.classDetail?.title}}</p>
 <p>Chi tiết môn:</p>
 <p>{{this.classDetail?.description}}</p>
@@ -23,7 +23,6 @@
       <td>{{classStudent.fullName}}</td>
 
 
-      <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
       <button class="btn btn-primary" (click)="removeStudents(this.classStudentList.indexOf(classStudent))">Remove From Class</button>
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -54,15 +53,91 @@
       <th scope="row">{{this.attendanceList.indexOf(attendance)}}</th>
       <td>{{attendance.date}}</td>
       <td>{{attendance.isOpen}}</td>
-      <!-- <button type="button" class="btn btn-primary" (click)="getClassDetail(class._id)">View detail</button> -->
       <button class="btn btn-primary"  (click)="getAttendance(attendance._id)">Detail</button>
       <button class="btn btn-danger"  (click)="deleteAttendance(attendance._id)">Delete</button>  
     </tr>
     <pagination-controls (pageChange)="ap = $event"></pagination-controls>
   </tbody>
-</table>
+</table> -->
 
+<div class="main">
+  <div class="left">
+      <div class="test">
+          <h1>Thông tin lớp 01</h1>
+          <p>Tên: {{classDetail?.title}}</p>
+          <p>Chi tiết môn: {{classDetail?.description}}</p>
+          <p>Giảng viên: {{classDetail.teacher?.fullName}}</p>
+          <p>Sỉ số sinh viên: n</p>
+      </div>
+      <div class="test">
+          <h1>Function</h1>
+          <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#AddStudent">Add student</a>
+          <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#UpdateClass">Update class</a>
+          
+          <a class="btn btn-primary btn-lg text-white" (click)="createAttendance()">Create attendance</a>
+          <a class="btn btn-primary btn-lg text-white" (click)="getAllAttendance()">Get all attendance</a>
+          <a class="btn btn-primary btn-lg text-white" routerLink="/class">Return to class list</a>
+      </div>
+  </div>
 
+  <div class="right">
+
+      <div>
+          <div class="title">
+              <p>Student in this class</p>
+          </div>
+          <div class="table-section">
+              <table id="table">
+                <tr class="header-row">
+                  <th class="header-item items">#</th>
+                  <th class="header-item items">Student Id</th>
+                  <th class="header-item items">Student Name</th>
+                  <th class="header-item items">Function</th>
+                </tr>
+                <tr class="table-rows" *ngFor="let classStudent of classStudentList| paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td class="items">{{classStudentList.indexOf(classStudent)+1}}</td>
+                  <td class="items">{{classStudent.sid}}</td>
+                  <td class="items">{{classStudent.fullName}}</td>
+                  <td class="items">
+                    <button class="delete" (click)="removeStudents(this.classStudentList.indexOf(classStudent))">Remove from class</button>
+                  </td>
+                </tr>
+              </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+          </div>
+      </div>
+
+      <div>
+          <div class="title">
+              <p>Attendance</p>
+          </div>
+          <div class="table-section">
+              <table id="table">
+                <tr class="header-row">
+                  <th class="header-item items">#</th>
+                  <th class="header-item items">Date</th>
+                  <th class="header-item items">IsOpen</th>
+                  <th class="header-item items">Function</th>
+                </tr>
+                <tr class="table-rows" *ngFor="let attendance of this.attendanceList| paginate: { itemsPerPage: 10, currentPage: ap }">
+                  <th scope="row" class="items">{{this.attendanceList.indexOf(attendance) +1}}</th>
+                  <td class="items">{{attendance.date}}</td>
+                  <td class="items">{{attendance.isOpen}}</td>
+                  <td class="items">
+                      <button class="update" (click)="getAttendance(attendance._id)">DETAIL</button>
+                      <button class="delete">DELETE</button>
+                  </td>
+                </tr>
+                
+              </table>
+              <pagination-controls (pageChange)="ap = $event"></pagination-controls>
+
+          </div>
+      </div>
+
+  </div>
+</div>
 
 
 
@@ -79,6 +154,25 @@
         </button>
       </div>
       <table class="table">
+        <thead class="thead-white">
+          <tr>
+            <th scope="col">StudentId</th>
+            <th scope="col">StudentName</th>
+            <th scope="col">Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>{{student.sid}}</td>
+            <td>{{student.fullName}}</td>
+            <td>
+              <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
+            </td>
+          </tr>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </tbody>
+      </table>
+      <!-- <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -101,7 +195,7 @@
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </tbody>
 
-      </table>
+      </table> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addStudent()">Save changes</button>
