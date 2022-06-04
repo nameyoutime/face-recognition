@@ -1,43 +1,55 @@
-<form [formGroup]="createClassForm">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Class Name</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-      placeholder="Class Name" formControlName="title">
+
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 50vw;">
+    <div class="card-body">
+      <form [formGroup]="createClassForm">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Class Name</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Class Name" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Class Description</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Class Description"
+            formControlName="description">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Choose Teacher</label>
+          <select class="form-control form-control-lg" formControlName="teacher">
+            <option *ngFor="let teacher of this.teacherList" [value]="teacher._id">{{teacher.fullName}}</option>
+          </select>
+        </div>
+      </form>
+      <div>
+        <label for="exampleInputPassword1">Choose Students</label>
+  
+        <div>
+          <div style="margin-left: 40%;" class="d-flex"
+            *ngFor="let student of this.studentList| paginate: { itemsPerPage: 5, currentPage: p }">
+            <div>
+              <input type="checkbox" class="form-check-input" [checked]="student.checked" (change)="student.checked=!student.checked">
+            </div>
+            <!-- <div scope="row">{{this.studentList.indexOf(student)}}</div> -->
+            <div style="margin-left: 5px;">{{student.fullName}}-{{student.sid}}</div>
+      
+          </div>
+          <div class="d-flex justify-content-center">
+      
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+  
+        <button class="btn btn-primary" (click)="createClass()">Submit</button>
+      </div>
+      <!-- <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Class Description</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Class Description" formControlName="description">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Choose Teacher</label>
-    <select class="form-control form-control-lg" formControlName="teacher">
-      <option *ngFor="let teacher of this.teacherList"   [value]="teacher._id">{{teacher.fullName}}</option>
-    </select>
-  </div>
-</form>
+</div>
 
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Student Id</th>
-      <th scope="col">Student Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Function</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
-      <th scope="row">{{this.studentList.indexOf(student)}}</th>
-      <td>{{student.sid}}</td>
-      <td>{{student.fullName}}</td>
-      <td>{{student.description}}</td>
-      <td>
-        <input type="checkbox" [checked]="student.checked" (change)="student.checked=!student.checked">
-      </td>
-    </tr>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </tbody>
-</table>
-<button class="btn btn-primary" (click)="createClass()">Submit</button>
+
+

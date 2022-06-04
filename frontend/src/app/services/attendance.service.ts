@@ -28,6 +28,10 @@ export class AttendanceService {
     return this.http.get(`${environment.api}attendance/id?id=${Id}`)
   }
   saveAttendance(attendance:any){
-    // return this.http.put(`${environment.api}attendance/`)
+    return this.http.put(`${environment.api}attendance/${attendance._id}`,attendance)
+  }
+
+  deleteAttendance(id:any){
+    return this.http.delete(`${environment.api}attendance/${id}`)
   }
 }

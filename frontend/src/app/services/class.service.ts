@@ -16,6 +16,8 @@ export class ClassService {
       this.classList = this.classList?.data
     })
   }
+
+
   getClassById(Id: any) {
     return this.http.get(`${environment.api}class/${Id}`)
 
@@ -30,7 +32,8 @@ export class ClassService {
       }
     })
   }
-  async updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any) {
+  updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any) {
+    // console.log(`${environment.api}class/${Id}`)
     return this.http.put(`${environment.api}class/${Id}`, {
       students: students,
       title: title,

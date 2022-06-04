@@ -29,9 +29,14 @@ export class AttendanceDetailComponent implements OnInit {
       console.log(this.studentList)
     })
   }
-  saveChange(){
+  async saveChange(){
     this.attendanceDetail.arr=this.studentList;
-    console.log(this.attendanceDetail)
+    await this.attendSvc.saveAttendance(this.attendanceDetail).subscribe((res:any)=>{
+      if(!res.error){
+        return;
+      }
+      alert("error");
+    })
 
 
   }

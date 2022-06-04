@@ -1,4 +1,4 @@
-<table class="table">
+<!-- <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -22,8 +22,39 @@
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
-</table>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Student</button>
+</table> -->
+<div class="main">
+  <div class="title">
+    <p>STUDENT TABLE</p>
+  </div>
+
+  <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddStudent">ADD NEW STUDENT</button>
+
+  <div class="table-section">
+    <table id="table">
+      <tr class="header-row">
+        <th class="header-item items">Student Id</th>
+        <th class="header-item items">Student Name</th>
+        <th class="header-item items">Description</th>
+        <th class="header-item items">Function</th>
+      </tr>
+      <tr class="table-rows" *ngFor="let student of this.studentList| paginate: { itemsPerPage: 10, currentPage: p }">
+        <td class="items">{{student.sid}}</td>
+        <td class="items">{{student.fullName}}</td>
+        <td class="items">{{student.description}}</td>
+        <td class="items">  
+          <button class="update"  data-toggle="modal" data-target="#viewStudentInfo" (click)="getStudentDetail(student.sid)">VIEW</button>
+          <button class="update" data-toggle="modal" data-target="#UpdateStudent" (click)="getStudentDetail(student.sid)">UPDATE</button>
+          <button class="delete" data-toggle="modal" data-target="#DeleteStudent"(click)="getStudentDetail(student.sid)" >DELETE</button> 
+
+        </td>
+      </tr>
+
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+</div>
 
 <div class="modal fade" id="viewStudentInfo" tabindex="-1" role="dialog" aria-labelledby="viewStudentInfoLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

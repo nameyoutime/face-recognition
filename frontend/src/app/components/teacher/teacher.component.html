@@ -1,4 +1,4 @@
-<table class="table">
+<!-- <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -24,11 +24,44 @@
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
-</table>
+</table> -->
+<div class="main">
+  <div class="title">
+    <p>TEACHER TABLE</p>
+  </div>
+  <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddStudent">ADD NEW TEACHER</button>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddStudent">Add Teacher</button>
+  <div class="table-section">
+    <table id="table">
+      <tr class="header-row">
+        <th class="header-item items">Teacher Id</th>
+        <th class="header-item items">Teacher Name</th>
+        <th class="header-item items">Teacher UserName</th>
+        <th class="header-item items">Role</th>
+        <th class="header-item items">Function</th>
+      </tr>
+      <tr class="table-rows" *ngFor="let teacher of this.teacherList| paginate: { itemsPerPage: 10, currentPage: p }">
+        <td class="items">{{this.teacherList.indexOf(teacher)+1}}</td>
+        <td class="items">{{teacher.fullName}}</td>
+        <td class="items">{{teacher.userName}}</td>
+        <td class="items">{{teacher.role}}</td>
+        <td class="items">
+          <button class="update" data-toggle="modal" data-target="#viewTeacherInfo"
+            (click)="getTeacherInfo(teacher._id)">VIEW</button>
+          <button class="update" data-toggle="modal" data-target="#UpdateTeacherInfo"
+            (click)="getTeacherInfo(teacher._id)">UPDATE</button>
 
- <div class="modal fade" id="viewTeacherInfo" tabindex="-1" role="dialog" aria-labelledby="viewTeacherInfoLabel"
+          <button class="delete" data-toggle="modal" data-target="#DeleteTeacher"
+            (click)="getTeacherInfo(teacher._id)">DELETE</button>
+        </td>
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+</div>
+
+<div class="modal fade" id="viewTeacherInfo" tabindex="-1" role="dialog" aria-labelledby="viewTeacherInfoLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -53,14 +86,133 @@
                 formControlName="teacherName">
             </div>
           </div>
-           <div class="form-group row">
+          <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
             <div class="col-sm-10">
               <input class="form-control" readonly id="inputPassword" placeholder="teacher"
                 formControlName="teacherUserName">
             </div>
           </div>
-           <div class="form-group row">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input class="form-control" readonly id="inputPassword" placeholder="teacherName"
+                formControlName="teacherPassWord">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Role</label>
+            <div class="col-sm-10">
+              <input class="form-control" readonly id="inputPassword" placeholder="teacherName"
+                formControlName="teacherRole">
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="UpdateTeacherInfo" tabindex="-1" role="dialog" aria-labelledby="UpdateTeacherInfoLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> UPDATE TEACHER INFOMATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateTeacherForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="teacherId">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword" placeholder="Teacher Name" formControlName="teacherName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword" placeholder="teacher" formControlName="teacherUserName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="inputPassword" placeholder="teacherName"
+                formControlName="teacherPassWord">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Choose Role</label>
+            <div class="col-sm-10">
+              <select class="form-control form-control-lg" formControlName="teacherRole" [value]="Role">
+                <option [value]="'teacher'">Teacher</option>
+                <option [value]="'admin'">Admin</option>
+              </select>
+            </div>
+            <!-- <label for="exampleInputPassword1">Choose Role</label>
+            <div class="col-sm-10">
+              
+            </div> -->
+            
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-Primary" data-dismiss="modal" (click)="updateTeacher()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DeleteTeacher" tabindex="-1" role="dialog" aria-labelledby="DeleteTeacherLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> TEACHER INFOMATION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateTeacherForm">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="teacherId">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
+            <div class="col-sm-10">
+              <input class="form-control" readonly id="inputPassword" placeholder="Teacher Name"
+                formControlName="teacherUserName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
+            <div class="col-sm-10">
+              <input class="form-control" readonly id="inputPassword" placeholder="teacher"
+                formControlName="teacherUserName">
+            </div>
+          </div>
+          <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
               <input class="form-control" readonly id="inputPassword" placeholder="teacherName"
@@ -79,123 +231,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteTeacher()">Delete</button>
       </div>
     </div>
   </div>
-</div>
-
-<div class="modal fade" id="UpdateTeacherInfo" tabindex="-1" role="dialog" aria-labelledby="UpdateTeacherInfoLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel"> UPDATE TEACHER INFOMATION</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="updateTeacherForm">
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-2 col-form-label">Id</label>
-          <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="teacherId">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
-          <div class="col-sm-10">
-            <input class="form-control"  id="inputPassword" placeholder="Teacher Name"
-              formControlName="teacherName">
-          </div>
-        </div>
-         <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
-          <div class="col-sm-10">
-            <input class="form-control"  id="inputPassword" placeholder="teacher"
-              formControlName="teacherUserName">
-          </div>
-        </div>
-         <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <input class="form-control"  id="inputPassword" placeholder="teacherName"
-              formControlName="teacherPassWord">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="exampleInputPassword1">Choose Role</label>
-          <select class="form-control form-control-lg" formControlName="teacherRole"  [value]="Role">
-            <option [value]="'teacher'">Teacher</option>
-            <option [value]="'admin'">Admin</option>
-          </select>
-        </div>
-
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-Primary" data-dismiss="modal" (click)="updateTeacher()">Update</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="DeleteTeacher" tabindex="-1" role="dialog" aria-labelledby="DeleteTeacherLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel"> TEACHER INFOMATION</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="updateTeacherForm">
-        <div class="form-group row">
-          <label for="staticEmail" class="col-sm-2 col-form-label">Id</label>
-          <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" formControlName="teacherId">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
-          <div class="col-sm-10">
-            <input class="form-control" readonly id="inputPassword" placeholder="Teacher Name"
-              formControlName="teacherUserName">
-          </div>
-        </div>
-         <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
-          <div class="col-sm-10">
-            <input class="form-control" readonly id="inputPassword" placeholder="teacher"
-              formControlName="teacherUserName">
-          </div>
-        </div>
-         <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <input class="form-control" readonly id="inputPassword" placeholder="teacherName"
-              formControlName="teacherPassWord">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Role</label>
-          <div class="col-sm-10">
-            <input class="form-control" readonly id="inputPassword" placeholder="teacherName"
-              formControlName="teacherRole">
-          </div>
-        </div>
-
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteTeacher()">Delete</button>
-    </div>
-  </div>
-</div>
 </div>
 
 <div class="modal fade" id="AddStudent" tabindex="-1" role="dialog" aria-labelledby="AddStudentLabel"
@@ -217,15 +256,16 @@ aria-hidden="true">
             </div>
           </div>
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">UserName</label>
+            <label class="col-sm-2 col-form-label">UserName</label>
             <div class="col-sm-10">
               <input class="form-control" id="inputPassword" placeholder="UserName" formControlName="teacherUserName">
             </div>
           </div>
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">PassWord</label>
+            <label class="col-sm-2 col-form-label">PassWord</label>
             <div class="col-sm-10">
-              <input class="form-control" id="inputPassword"  type="password" placeholder="PassWord" formControlName="teacherPassWord">
+              <input class="form-control" id="inputPassword" type="password" placeholder="PassWord"
+                formControlName="teacherPassWord">
             </div>
           </div>
           <div class="form-group row">

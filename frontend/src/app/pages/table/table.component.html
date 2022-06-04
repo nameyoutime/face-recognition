@@ -1,8 +1,37 @@
-<div style="background-color: red; display: flex;">
+<!-- <div style="background-color: red; display: flex;">
   <p>table works!</p>
   <button class="btn btn-primary" routerLink="class">CLASS</button>
   <button class="btn btn-primary" routerLink="student">STUDENT</button>
   <button class="btn btn-primary" routerLink="teacher">Teacher</button>
+</div> -->
+<div class="header">
+  <div class="logo">
+    <img src="../../../assets/HSU1.jpg" />
+  </div>
+
+  <div class="user">
+    <p>Nguyen Van A</p>
+    <div class="dropdown" style="margin: auto;">
+      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,30">
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border: solid 1px #333;">
+        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="#">About</a>
+        <a class="dropdown-item" href="#">Settings</a>
+        <a class="dropdown-item" href="#" style="color: red;">Logout</a>
+      </div>
+    </div>
+    <img src="../../../assets/User.png" />
+  </div>
+</div>
+
+<div class="nav">
+  <ul>
+    <li><a routerLink="class" class="text">HOME</a></li>
+    <li><a routerLink="class" class="text">CLASS</a></li>
+    <li><a routerLink="student" class="text">STUDENT</a></li>
+    <li><a routerLink="teacher" class="text">TEACHER</a></li>
+  </ul>
 </div>
 <div style="height:50% ;width: 100%;">
   <router-outlet></router-outlet>

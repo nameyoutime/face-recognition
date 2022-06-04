@@ -1,0 +1,73 @@
+/* This first section is a simple "reset". It allows the navbar to push up against the top of the browser window with no white space around it. This code also sets the default font for your whole page. Put it at the very top of your css page.  */
+html, body, div, p, ul, li {
+    // margin: 0;
+    // padding: 0;
+    // border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+  }
+
+.header{
+    display: flex; 
+    flex-direction: row
+}
+
+.nav {
+    background: #0C4DA2;
+    height: 70px; /* set same as height & line-height below */
+}
+  
+.nav li {
+    display: inline-block;
+    list-style: none;
+    height: 70px; /* should be the same as line-height */
+    line-height: 70px; /* should be the same as height */
+    padding: 0 40px;
+    transition: all 0.7s;
+}
+
+.nav li:hover {
+    background: #00AEEF;
+    transition: all 0.7s;
+}
+
+.text{
+    font-size: 22px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo{
+    display: flex;
+    justify-content: left;
+    img{
+        height: 100px;
+        width: 280px;
+        padding: 0 0 0 5rem;
+    }
+}
+
+ul{
+    padding: 0 8rem 0 4rem;
+}
+
+.user{
+    margin-left: 65%; 
+    display: flex;
+    p{
+        padding: 0;
+        margin: auto;
+        font-size: 22px;
+    }
+    img{
+        border: solid 2px #333;
+        margin: 5px 5px;
+        height: 90px;
+        width: 90px;
+    }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
