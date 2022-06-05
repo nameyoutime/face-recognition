@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.auth.getUser()
     if(!this.auth.getAuth()){
       alert("Already logged in")
-      this.route.navigate(['table'])
+      this.route.navigate(['table/class'])
     }
 
   }
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("user", JSON.stringify(this.auth.user))
           this.auth.user = JSON.parse(localStorage.getItem("user")!)
 
-          this.route.navigate(['table/'])
+          this.route.navigate(['table/class'])
         }
         else {
           throw new Error("Can't Login")

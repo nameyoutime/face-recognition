@@ -19,8 +19,10 @@ const routes: Routes = [{
     { path: 'student/:id', component: ClassDetailComponent ,canActivate:[AuthguardService]},
     { path: 'teacher', component: TeacherComponent ,canActivate:[RoleguardService]},
     { path: 'attendance/:id', component: AttendanceDetailComponent,canActivate:[AuthguardService] },
-  ]
-},
+  ],
+ 
+
+}
 
 
 ];
