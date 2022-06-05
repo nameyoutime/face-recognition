@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class TeacherComponent implements OnInit {
   teacherInfo: any;
   p: any;
   Role: any = "teacher"
-  constructor(public teacherSv: TeacherService, public fb: FormBuilder) {
+  constructor(public teacherSv: TeacherService, public fb: FormBuilder,public auth:AuthService) {
     this.getTeacher()
 
     this.updateTeacherForm = new FormGroup({

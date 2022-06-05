@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class StudentComponent implements OnInit {
   studentList: any;
   student: any;
   p:any=1
-  constructor(public studentSv: StudentService, private route: Router, private fb: FormBuilder) {
+  constructor(public studentSv: StudentService, private route: Router, private fb: FormBuilder,public auth:AuthService) {
     this.getStudent();
 
     this.updateStudentForm = new FormGroup({
@@ -32,6 +33,7 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
   async getStudent() {
     (await this.studentSv.getStudent()).subscribe((data: any) => {

@@ -9,15 +9,24 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   user: any;
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient, private route: Router) {
+
+  }
 
   login(username: any, password: any) {
     return this.http.get(`${environment.api}teacher/login/${username}?password=${password}`)
   }
-  logOut() {
-    this.user = null;
+  getUser(){
+    this.user = JSON.parse(localStorage.getItem("user")!)
+
   }
-  getAuth() {
+  logOut() {
+    localStorage.clear()
+    this.user = null;
+
+  }
+
+ public getAuth() {
     return (this.user == null) ? true : false;
   }
 

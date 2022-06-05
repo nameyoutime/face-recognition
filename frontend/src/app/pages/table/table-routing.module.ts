@@ -7,16 +7,18 @@ import { TableComponent } from './table.component';
 import { CreateClassComponent } from 'src/app/components/create-class/create-class.component';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 import { AttendanceDetailComponent } from 'src/app/components/attendance-detail/attendance-detail.component';
+import { AuthguardService } from 'src/app/services/authguard.service';
+import { RoleguardService } from 'src/app/services/roleguard.service';
 
 const routes: Routes = [{
   path: '', component: TableComponent, children: [
-    { path: 'class', component: ClassComponent },
-    { path: 'class/:id', component: ClassDetailComponent },
-    { path: 'createclass', component: CreateClassComponent },
-    { path: 'student', component: StudentComponent },
-    { path: 'student/:id', component: ClassDetailComponent },
-    { path: 'teacher', component: TeacherComponent },
-    { path: 'attendance/:id', component: AttendanceDetailComponent },
+    { path: 'class', component: ClassComponent,canActivate:[AuthguardService] },
+    { path: 'class/:id', component: ClassDetailComponent,canActivate:[AuthguardService] },
+    { path: 'createclass', component: CreateClassComponent,canActivate:[AuthguardService] },
+    { path: 'student', component: StudentComponent ,canActivate:[AuthguardService]},
+    { path: 'student/:id', component: ClassDetailComponent ,canActivate:[AuthguardService]},
+    { path: 'teacher', component: TeacherComponent ,canActivate:[RoleguardService]},
+    { path: 'attendance/:id', component: AttendanceDetailComponent,canActivate:[AuthguardService] },
   ]
 },
 

@@ -54,7 +54,7 @@
       <td>{{attendance.date}}</td>
       <td>{{attendance.isOpen}}</td>
       <button class="btn btn-primary"  (click)="getAttendance(attendance._id)">Detail</button>
-      <button class="btn btn-danger"  (click)="deleteAttendance(attendance._id)">Delete</button>  
+      <button class="btn btn-danger"  (click)="deleteAttendance(attendance._id)">Delete</button>
     </tr>
     <pagination-controls (pageChange)="ap = $event"></pagination-controls>
   </tbody>
@@ -62,79 +62,84 @@
 
 <div class="main">
   <div class="left">
-      <div class="test">
-          <h1>Thông tin lớp 01</h1>
-          <p>Tên: {{classDetail?.title}}</p>
-          <p>Chi tiết môn: {{classDetail?.description}}</p>
-          <p>Giảng viên: {{classDetail.teacher?.fullName}}</p>
-          <p>Sỉ số sinh viên: n</p>
-      </div>
-      <div class="test">
-          <h1>Function</h1>
-          <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#AddStudent">Add student</a>
-          <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#UpdateClass">Update class</a>
-          
-          <a class="btn btn-primary btn-lg text-white" (click)="createAttendance()">Create attendance</a>
-          <a class="btn btn-primary btn-lg text-white" (click)="getAllAttendance()">Get all attendance</a>
-          <a class="btn btn-primary btn-lg text-white" routerLink="/class">Return to class list</a>
-      </div>
+    <div class="test">
+      <h1>Thông tin lớp 01</h1>
+      <p>Tên: {{classDetail?.title}}</p>
+      <p>Chi tiết môn: {{classDetail?.description}}</p>
+      <p>Giảng viên: {{classDetail.teacher?.fullName}}</p>
+      <p>Sỉ số sinh viên: {{classStudentList.length}}</p>
+    </div>
+    <div class="test">
+      <h1>Function</h1>
+      <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#AddStudent"
+        *ngIf="this.auth.user.role!='teacher'">Add student</a>
+      <a class="btn btn-primary btn-lg text-white" data-toggle="modal" data-target="#UpdateClass"
+        *ngIf="this.auth.user.role!='teacher'">Update class</a>
+
+      <a class="btn btn-primary btn-lg text-white" (click)="createAttendance()">Create attendance</a>
+      <a class="btn btn-primary btn-lg text-white" (click)="getAllAttendance()">Get all attendance</a>
+      <a class="btn btn-primary btn-lg text-white" routerLink="class">Return to class list</a>
+    </div>
   </div>
 
   <div class="right">
 
-      <div>
-          <div class="title">
-              <p>Student in this class</p>
-          </div>
-          <div class="table-section">
-              <table id="table">
-                <tr class="header-row">
-                  <th class="header-item items">#</th>
-                  <th class="header-item items">Student Id</th>
-                  <th class="header-item items">Student Name</th>
-                  <th class="header-item items">Function</th>
-                </tr>
-                <tr class="table-rows" *ngFor="let classStudent of classStudentList| paginate: { itemsPerPage: 10, currentPage: p }">
-                  <td class="items">{{classStudentList.indexOf(classStudent)+1}}</td>
-                  <td class="items">{{classStudent.sid}}</td>
-                  <td class="items">{{classStudent.fullName}}</td>
-                  <td class="items">
-                    <button class="delete" (click)="removeStudents(this.classStudentList.indexOf(classStudent))">Remove from class</button>
-                  </td>
-                </tr>
-              </table>
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-          </div>
+    <div>
+      <div class="title">
+        <p>Student in this class</p>
       </div>
+      <div class="table-section">
+        <table id="table">
+          <tr class="header-row">
+            <th class="header-item items">#</th>
+            <th class="header-item items">Student Id</th>
+            <th class="header-item items">Student Name</th>
+            <th class="header-item items">Function</th>
+          </tr>
+          <tr class="table-rows"
+            *ngFor="let classStudent of classStudentList| paginate: { itemsPerPage: 10, currentPage: p }">
+            <td class="items">{{classStudentList.indexOf(classStudent)+1}}</td>
+            <td class="items">{{classStudent.sid}}</td>
+            <td class="items">{{classStudent.fullName}}</td>
+            <td class="items">
+              <button class="delete" (click)="removeStudents(this.classStudentList.indexOf(classStudent))"
+                *ngIf="this.auth.user.role!='teacher'">Remove from class</button>
+            </td>
+          </tr>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-      <div>
-          <div class="title">
-              <p>Attendance</p>
-          </div>
-          <div class="table-section">
-              <table id="table">
-                <tr class="header-row">
-                  <th class="header-item items">#</th>
-                  <th class="header-item items">Date</th>
-                  <th class="header-item items">IsOpen</th>
-                  <th class="header-item items">Function</th>
-                </tr>
-                <tr class="table-rows" *ngFor="let attendance of this.attendanceList| paginate: { itemsPerPage: 10, currentPage: ap }">
-                  <th scope="row" class="items">{{this.attendanceList.indexOf(attendance) +1}}</th>
-                  <td class="items">{{attendance.date}}</td>
-                  <td class="items">{{attendance.isOpen}}</td>
-                  <td class="items">
-                      <button class="update" (click)="getAttendance(attendance._id)">DETAIL</button>
-                      <button class="delete">DELETE</button>
-                  </td>
-                </tr>
-                
-              </table>
-              <pagination-controls (pageChange)="ap = $event"></pagination-controls>
-
-          </div>
       </div>
+    </div>
+
+    <div>
+      <div class="title">
+        <p>Attendance</p>
+      </div>
+      <div class="table-section">
+        <table id="table">
+          <tr class="header-row">
+            <th class="header-item items">#</th>
+            <th class="header-item items">Date</th>
+            <th class="header-item items">IsOpen</th>
+            <th class="header-item items">Function</th>
+          </tr>
+          <tr class="table-rows"
+            *ngFor="let attendance of this.attendanceList| paginate: { itemsPerPage: 10, currentPage: ap }">
+            <th scope="row" class="items">{{this.attendanceList.indexOf(attendance) +1}}</th>
+            <td class="items">{{attendance.date}}</td>
+            <td class="items">{{attendance.isOpen}}</td>
+            <td class="items">
+              <button class="update" (click)="getAttendance(attendance._id)">DETAIL</button>
+              <button class="delete" *ngIf="this.auth.user.role!='teacher'">DELETE</button>
+            </td>
+          </tr>
+
+        </table>
+        <pagination-controls (pageChange)="ap = $event"></pagination-controls>
+
+      </div>
+    </div>
 
   </div>
 </div>
@@ -220,13 +225,15 @@
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-              <input type="text"   class="form-control" id="staticEmail" formControlName="classTitle" [value]="classDetail.title">
+              <input type="text" class="form-control" id="staticEmail" formControlName="classTitle"
+                [value]="classDetail.title">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
-              <input  class="form-control"  id="inputPassword" placeholder="Full Name" formControlName="classDescription" [value]="classDetail.description">
+              <input class="form-control" id="inputPassword" placeholder="Description" formControlName="classDescription"
+                [value]="classDetail.description">
             </div>
           </div>
           <div class="form-group row">
@@ -234,10 +241,9 @@
             <div class="col-sm-10">
               <select class="form-control form-control-lg" formControlName="classTeacher">
 
-                <option *ngFor="let teach of teacher"  [value]="teach.fullName" >
-                  <div >{{teach.fullName}}</div>
-                  
-                  </option>
+                <option *ngFor="let teach of teacher" [value]="teach._id">
+                  {{teach.fullName}}
+                </option>
               </select>
               <!-- <input  class="form-control" readonly id="inputPassword" placeholder="Description" formControlName="classTeacher"> -->
             </div>
@@ -246,7 +252,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateClass()">Save changes</button>
       </div>
     </div>
 

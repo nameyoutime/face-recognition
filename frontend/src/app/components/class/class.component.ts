@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ClassService } from 'src/app/services/class.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-class',
@@ -15,8 +16,9 @@ export class ClassComponent implements OnInit {
   deleteClassForm: FormGroup
   p: any = 1
   classDetail: any
-  constructor(public classSv: ClassService, public route: Router, public fb: FormBuilder) {
-    this.getClass()
+  constructor(public classSv: ClassService, public route: Router, public fb: FormBuilder,public auth:AuthService) {
+
+
     this.deleteClassForm = new FormGroup({
       classId: new FormControl(''),
 
@@ -24,7 +26,12 @@ export class ClassComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if(this.auth.user.role!='teacher'){
+      this.getClass()
+    }
+    else{
+      this.getTeacherClass()
+    }
   }
   async getClassDetailDelete(classId: any) {
     await this.classSv.getClassById(classId).subscribe((data: any) => {
@@ -41,6 +48,12 @@ export class ClassComponent implements OnInit {
   }
   async getClass() {
     await this.classSv.getClass().then(() => {
+      this.loadClassList = true
+
+    })
+  }
+  async getTeacherClass() {
+    await this.classSv.getTeacherClass(this.auth.user._id).then(() => {
       this.loadClassList = true
 
     })

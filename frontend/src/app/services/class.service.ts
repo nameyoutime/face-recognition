@@ -22,6 +22,15 @@ export class ClassService {
     return this.http.get(`${environment.api}class/${Id}`)
 
   }
+  async getTeacherClass(idTeacher: any) {
+     await this.http.get(`${environment.api}Class/teacher/${idTeacher}`).subscribe((data) => {
+      this.classList = data
+      this.classList = this.classList?.data
+
+    })
+
+
+  }
   createClass(students: Array<any>, title: any, description: any, teacher: any) {
     return this.http.post(`${environment.api}class/`, {
       classes: {
@@ -32,13 +41,14 @@ export class ClassService {
       }
     })
   }
-  updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any) {
+  updateClass(Id: any, students: Array<any>, title: any, description: any, teacher: any, isOpen: any) {
     // console.log(`${environment.api}class/${Id}`)
     return this.http.put(`${environment.api}class/${Id}`, {
       students: students,
       title: title,
       description: description,
       teacher: teacher,
+      isOpen: isOpen,
     })
   }
   async deleteClassById(Id: any) {

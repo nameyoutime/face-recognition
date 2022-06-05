@@ -28,7 +28,7 @@
     <p>STUDENT TABLE</p>
   </div>
 
-  <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddStudent">ADD NEW STUDENT</button>
+  <button type="button" class="btn1 btn-lg" data-toggle="modal" data-target="#AddStudent" *ngIf="this.auth.user.role!='teacher'">ADD NEW STUDENT</button>
 
   <div class="table-section">
     <table id="table">
@@ -42,10 +42,10 @@
         <td class="items">{{student.sid}}</td>
         <td class="items">{{student.fullName}}</td>
         <td class="items">{{student.description}}</td>
-        <td class="items">  
+        <td class="items">
           <button class="update"  data-toggle="modal" data-target="#viewStudentInfo" (click)="getStudentDetail(student.sid)">VIEW</button>
-          <button class="update" data-toggle="modal" data-target="#UpdateStudent" (click)="getStudentDetail(student.sid)">UPDATE</button>
-          <button class="delete" data-toggle="modal" data-target="#DeleteStudent"(click)="getStudentDetail(student.sid)" >DELETE</button> 
+          <button class="update" data-toggle="modal" data-target="#UpdateStudent" (click)="getStudentDetail(student.sid)" *ngIf="this.auth.user.role!='teacher'">UPDATE</button>
+          <button class="delete" data-toggle="modal" data-target="#DeleteStudent"(click)="getStudentDetail(student.sid)" *ngIf="this.auth.user.role!='teacher'">DELETE</button>
 
         </td>
       </tr>

@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private auth:AuthService,private route:Router) {
+  constructor(public auth:AuthService,private route:Router) {
 
   }
 

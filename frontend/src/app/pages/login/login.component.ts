@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.getUser()
+    if(!this.auth.getAuth()){
+      alert("Already logged in")
+      this.route.navigate(['table'])
+    }
 
   }
   async signIn() {
@@ -27,10 +32,12 @@ export class LoginComponent implements OnInit {
         if (data.data.length > 0) {
           this.auth.user = {
             userName: data.data[0].userName,
-            role: data.data[0].role
+            role: data.data[0].role,
+            _id: data.data[0]._id
           }
           localStorage.setItem("user", JSON.stringify(this.auth.user))
           this.auth.user = JSON.parse(localStorage.getItem("user")!)
+
           this.route.navigate(['table/'])
         }
         else {
