@@ -8,31 +8,32 @@ import { AttendanceService } from 'src/app/services/attendance.service';
   styleUrls: ['./attendance-detail.component.scss']
 })
 export class AttendanceDetailComponent implements OnInit {
- p:any;
- Id:any;
- studentList:Array<any>=[];
- attendanceDetail:any;
-  constructor(private acRoute:ActivatedRoute,private attendSvc:AttendanceService,private route:Router) {
+  p: any;
+  Id: any;
+  studentList: Array<any> = [];
+  attendanceDetail: any;
+  constructor(private acRoute: ActivatedRoute, private attendSvc: AttendanceService, private route: Router) {
     this.acRoute.params.subscribe((param: any) => {
-      this.Id = param?.id
-
+      this.Id = param?.id;
     });
   }
 
   ngOnInit(): void {
-    this.getAttendance()
+    this.getAttendance();
   }
-  getAttendance(){
-    this.attendSvc.getAttendance(this.Id).subscribe((data:any)=>{
-      this.attendanceDetail=data.data
-      this.studentList=data.data.arr
-      console.log(this.studentList)
+  getAttendance() {
+    this.attendSvc.getAttendance(this.Id).subscribe((data: any) => {
+      this.attendanceDetail = data.data;
+      this.studentList = data.data.arr;
     })
   }
-  async saveChange(){
-    this.attendanceDetail.arr=this.studentList;
-    await this.attendSvc.saveAttendance(this.attendanceDetail).subscribe((res:any)=>{
-      if(!res.error){
+  refesh() {
+    this.getAttendance();
+  }
+  async saveChange() {
+    this.attendanceDetail.arr = this.studentList;
+    await this.attendSvc.saveAttendance(this.attendanceDetail).subscribe((res: any) => {
+      if (!res.error) {
         return;
       }
       alert("error");

@@ -12,11 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ClassComponent implements OnInit {
 
-  loadClassList: boolean = false
-  deleteClassForm: FormGroup
-  p: any = 1
-  classDetail: any
-  constructor(public classSv: ClassService, public route: Router, public fb: FormBuilder,public auth:AuthService) {
+  loadClassList: boolean = false;
+  deleteClassForm: FormGroup;
+  p: any = 1;
+  classDetail: any;
+  random!: number;
+  constructor(public classSv: ClassService, public route: Router, public fb: FormBuilder, public auth: AuthService) {
 
 
     this.deleteClassForm = new FormGroup({
@@ -26,12 +27,13 @@ export class ClassComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.auth.user.role!='teacher'){
-      this.getClass()
+    if (this.auth.user.role != 'teacher') {
+      this.getClass();
     }
-    else{
-      this.getTeacherClass()
+    else {
+      this.getTeacherClass();
     }
+    this.random = Math.floor(Math.random() * 9) + 1;
   }
   async getClassDetailDelete(classId: any) {
     await this.classSv.getClassById(classId).subscribe((data: any) => {

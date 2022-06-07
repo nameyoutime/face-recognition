@@ -63,9 +63,9 @@
     </div>
     <div *ngIf="this.loadClassList" style="display: flex; flex-direction: row; flex-wrap: wrap;">
       <article *ngFor="let class of this.classSv.classList |paginate: { itemsPerPage: 10, currentPage: p }" class="card"
-        style="background-image: url(../../../assets/Untitled1.png)">
+        style="background-image: url(../../../assets/Untitled{{random}}.png)">
         <div class="card_content">
-          <div (click)="getClassDetail(class._id)">
+          <div>
             <p class="card_title">{{class.title}}</p>
             <span class="card_subtitle">num of students: {{class.students.length}}</span>
             <p class="card_description">
