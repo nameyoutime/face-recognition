@@ -45,7 +45,7 @@ export class ClassDetailComponent implements OnInit {
 
   }
   async closeAttend(id:any,isOpen:boolean){
-    console.log(id,isOpen)
+    // console.log(id,isOpen)
     let temp = {
       _id:id,
       isOpen:!isOpen
@@ -104,7 +104,7 @@ export class ClassDetailComponent implements OnInit {
   async getClassDetail() {
     await this.classSv.getClassById(this.Id).subscribe((data: any) => {
       this.classDetail = data.data;
-      console.log(this.classDetail)
+      // console.log(this.classDetail)
 
       this.getClassStudentList(data.data.students);
     });
@@ -127,7 +127,7 @@ export class ClassDetailComponent implements OnInit {
    let studentlistId=this.classDetail.students.map((student:any)=>{
     return student['_id'];
    })
-   console.log(this.updateClassForm.controls['classTeacher'].value)
+  //  console.log(this.updateClassForm.controls['classTeacher'].value)
 
     await this.classSv.updateClass(this.classDetail._id,studentlistId,this.updateClassForm.controls['classTitle'].value,this.updateClassForm.controls['classDescription'].value,this.updateClassForm.controls['classTeacher'].value,this.classDetail.isOpen).subscribe((res:any)=>{
       if(!res.error){

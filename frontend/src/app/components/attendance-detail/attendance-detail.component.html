@@ -51,7 +51,7 @@
                 <th scope="row">{{this.studentList.indexOf(student)+1}}</th>
                 <td>{{student.student.sid}}</td>
                 <td>{{student.student.fullName}}</td>
-                <td>{{student.date}}</td>
+                <td>{{ student.date | dateEposh }} </td>
                 <td>
                   <input type="checkbox" [checked]="student.absence" (change)="student.absence=!student.absence">
                 </td>
@@ -64,7 +64,8 @@
           </div>
           <div class="d-flex justify-content-end">
 
-            <button class="btn btn-primary " *ngIf="attendanceDetail?.isOpen" (click)="saveChange()">Save Changes</button>
+            <button class="btn btn-primary " *ngIf="attendanceDetail?.isOpen" (click)="saveChange()">Save
+              Changes</button>
           </div>
 
         </div>

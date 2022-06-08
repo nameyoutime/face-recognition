@@ -34,7 +34,7 @@ export class CreateClassComponent implements OnInit {
       this.studentList = data.data
       for (let i = 0; i < this.studentList.length; i++) {
         this.studentList[i].checked = false;
-        console.log(this.studentList[i])
+        // console.log(this.studentList[i])
       }
     })
 

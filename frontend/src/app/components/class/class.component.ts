@@ -38,7 +38,7 @@ export class ClassComponent implements OnInit {
   async getClassDetailDelete(classId: any) {
     await this.classSv.getClassById(classId).subscribe((data: any) => {
       this.classDetail = data.data
-      console.log(this.classDetail)
+      // console.log(this.classDetail)
       this.patchFormValue(this.classDetail)
     })
   }
