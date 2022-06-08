@@ -44,7 +44,18 @@ export class ClassDetailComponent implements OnInit {
 
 
   }
-
+  async closeAttend(id:any,isOpen:boolean){
+    console.log(id,isOpen)
+    let temp = {
+      _id:id,
+      isOpen:!isOpen
+    }
+    await this.attendSvc.saveAttendance(temp).subscribe((res:any)=>{
+      if(!res.error){
+        this.getAllAttendance();
+      }
+    });
+  }
   async getTeacher(){
     (await this.teacherSv.getTeacherList()).subscribe((res:any)=>{
       for (let i = 0; i < res.data.length; i++) {
@@ -100,6 +111,9 @@ export class ClassDetailComponent implements OnInit {
   }
   getClassStudentList(studentArray: Array<any>) {
     this.classStudentList = studentArray;
+  }
+  routingToClass(){
+    this.route.navigate(['/table/class'])
   }
   async deleteAttendance(id:any) {
 

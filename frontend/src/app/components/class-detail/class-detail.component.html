@@ -63,11 +63,11 @@
 <div class="main">
   <div class="left">
     <div class="test">
-      <h1>Thông tin lớp 01</h1>
-      <p>Tên: {{classDetail?.title}}</p>
-      <p>Chi tiết môn: {{classDetail?.description}}</p>
-      <p>Giảng viên: {{classDetail.teacher?.fullName}}</p>
-      <p>Sỉ số sinh viên: {{classStudentList.length}}</p>
+      <h1>Class information</h1>
+      <p>Name: {{classDetail?.title}}</p>
+      <p>Detail: {{classDetail?.description}}</p>
+      <p>Teacher: {{classDetail.teacher?.fullName}}</p>
+      <p>Number of students: {{classStudentList.length}}</p>
     </div>
     <div class="test">
       <h1>Function</h1>
@@ -78,7 +78,7 @@
 
       <a class="btn btn-primary btn-lg text-white" (click)="createAttendance()">Create attendance</a>
       <a class="btn btn-primary btn-lg text-white" (click)="getAllAttendance()">Get all attendance</a>
-      <a class="btn btn-primary btn-lg text-white" routerLink="class">Return to class list</a>
+      <!-- <a class="btn btn-primary btn-lg text-white" (click)="routingToClass()">Return to class list</a> -->
     </div>
   </div>
 
@@ -132,10 +132,12 @@
             *ngFor="let attendance of this.attendanceList| paginate: { itemsPerPage: 10, currentPage: ap }">
             <th scope="row" class="items">{{this.attendanceList.indexOf(attendance) +1}}</th>
             <td class="items">{{attendance.date}}</td>
-            <td class="items">{{attendance.isOpen}}</td>
+            <td class="items" [class]="attendance.isOpen ? 'text-success' : 'text-danger'">{{attendance.isOpen}}</td>
             <td class="items">
               <button class="update" (click)="getAttendance(attendance._id)">DETAIL</button>
-              <button class="delete" *ngIf="this.auth.user.role!='teacher'">DELETE</button>
+              
+              <button class="update" *ngIf="attendance.isOpen" (click)="closeAttend(attendance._id,attendance.isOpen)">CLOSE</button>
+              <button class="delete" *ngIf="this.auth.user.role!='teacher'" (click)="deleteAttendance(attendance._id)">DELETE</button>
             </td>
           </tr>
 

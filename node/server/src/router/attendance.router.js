@@ -51,7 +51,7 @@ router.delete("/:id", async (req, res) => {
 });
 router.put("/:id", async (req, res) => {
   let { id } = req.params;
-  let  attendance = req.body;
+  let attendance = req.body;
   try {
     let data = await AttendanceDB.findByIdAndUpdate(id, attendance);
     res.send({ data: data });
@@ -90,30 +90,38 @@ router.put("/face/id", async (req, res) => {
   let temp = update.nameSid.split("-");
   let sid = temp[1];
   let fullName = temp[0];
+
   try {
+
     let find = await AttendanceDB.findById(id).populate("arr.student");
-    let array = find.arr;
-    let findIndex = array.findIndex(
-      (val) =>
-        val.student.sid == parseInt(sid) && val.student.fullName == fullName
-    );
-    if ((findIndex) => 0) {
-      if (array[findIndex].absence == true) {
-        console.log(array[findIndex].absence);
-        let set = array[findIndex]._id;
-        result = await AttendanceDB.updateOne(
-          {
-            _id: mongoose.Types.ObjectId(id),
-            "arr._id": mongoose.Types.ObjectId(set),
-          },
-          { $set: { "arr.$.absence": false, "arr.$.date": Date.now() } }
-        );
+    // console.log(find);
+    if (find.isOpen) {
+      let array = find.arr;
+      let findIndex = array.findIndex(
+        (val) =>
+          val.student.sid == parseInt(sid) && val.student.fullName == fullName
+      );
+      if ((findIndex) => 0) {
+        if (array[findIndex].absence == true) {
+          
+          let set = array[findIndex]._id;
+          result = await AttendanceDB.updateOne(
+            {
+              _id: mongoose.Types.ObjectId(id),
+              "arr._id": mongoose.Types.ObjectId(set),
+            },
+            { $set: { "arr.$.absence": false, "arr.$.date": Date.now() } }
+          );
+        } else {
+          result = "students already attend";
+        }
       } else {
-        result = "students already attend";
+        result = "can't find students";
       }
-    } else {
-      result = "can't find students";
+    }else{
+      result = "can't update students";
     }
+
   } catch (error) {
     result = error;
   }

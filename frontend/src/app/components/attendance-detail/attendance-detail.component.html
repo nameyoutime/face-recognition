@@ -64,7 +64,7 @@
           </div>
           <div class="d-flex justify-content-end">
 
-            <button class="btn btn-primary " (click)="saveChange()">Save Changes</button>
+            <button class="btn btn-primary " *ngIf="attendanceDetail?.isOpen" (click)="saveChange()">Save Changes</button>
           </div>
 
         </div>
