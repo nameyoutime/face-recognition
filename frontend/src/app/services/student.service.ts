@@ -29,6 +29,7 @@ export class StudentService {
     })
   }
 
+
   updateStudent(Id: any, name: any, description: any) {
     return this.http.put(`${environment.api}student${Id}`, {
       student: {

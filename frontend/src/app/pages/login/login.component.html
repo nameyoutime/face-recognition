@@ -17,23 +17,23 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <p class="text-gray-900 mb-4 title">Hệ thống điểm danh</p>
+                                        <p class="text-gray-900 mb-4 title">Attendance project </p>
                                     </div>
                                     <form class="user" (submit)="signIn()" [formGroup]="loginForm">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user inputBut" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tài khoản" formControlName="username">
+                                            <input type="email" class="form-control form-control-user inputBut" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="User name" formControlName="username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu" formControlName="password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" formControlName="password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Ghi nhớ mật khẩu</label>
+                                                <label class="custom-control-label" for="customCheck">Remember me</label>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block loginBut">
-                                            Đăng nhập
+                                            LOG IN
                                         </button>
                                         <!-- (click)="signIn()" -->
                                         <div class="logo">
