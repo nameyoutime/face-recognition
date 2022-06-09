@@ -35,21 +35,26 @@ export class ClassDetailComponent implements OnInit {
       this.getTeacher();
     });
     this.updateClassForm = new FormGroup({
-      classTitle: new FormControl(''),
-      classDescription: new FormControl('', [Validators.required]),
-      classTeacher: new FormControl('a', [Validators.required]),
-    })
+      classTitle: new FormControl(this.classDetail.title),
+      classDescription: new FormControl(this.classDetail.Description, [Validators.required]),
+      classTeacher: new FormControl(this.classDetail.teacher, [Validators.required]),
+    });
   }
   ngOnInit(): void {
 
+    this.updateClassForm.patchValue({
+      classTitle:this.classDetail.title,
+      classDescription: this.classDetail.Description,
+      classTeacher: this.classDetail.teacher,
 
+    })
   }
   async closeAttend(id:any,isOpen:boolean){
     // console.log(id,isOpen)
     let temp = {
       _id:id,
       isOpen:!isOpen
-    }
+    };
     await this.attendSvc.saveAttendance(temp).subscribe((res:any)=>{
       if(!res.error){
         this.getAllAttendance();
@@ -65,7 +70,7 @@ export class ClassDetailComponent implements OnInit {
       }
       this.teacher = res.data;
 
-    })
+    });
 
   }
   async getStudent() {
@@ -83,11 +88,11 @@ export class ClassDetailComponent implements OnInit {
       if(val.checked){
         let index = this.classDetail.students.findIndex((v:any) => v._id == val._id);
         if(index==-1){
-          temp.push(val._id)
+          temp.push(val._id);
         }
       }
     });
-    await this.classSv.updateClass(this.classDetail._id,temp,this.classDetail.title,this.classDetail.description,this.classDetail.teacher,this.classDetail.isOpen).subscribe((res:any)=>{
+    await this.classSv.updateClass(this.classDetail._id,temp,this.updateClassForm.controls['classTitle'].value,this.updateClassForm.controls['classDescription'].value,this.updateClassForm.controls['valueclassTeacher'].value,this.classDetail.isOpen).subscribe((res:any)=>{
       if(!res.error){
         this.getClassDetail();
       }
@@ -113,7 +118,7 @@ export class ClassDetailComponent implements OnInit {
     this.classStudentList = studentArray;
   }
   routingToClass(){
-    this.route.navigate(['/table/class'])
+    this.route.navigate(['/table/class']);
   }
   async deleteAttendance(id:any) {
 
@@ -121,19 +126,17 @@ export class ClassDetailComponent implements OnInit {
       if(!res.error){
         this.getAllAttendance();
       }
-    })
+    });
   }
   async updateClass(){
    let studentlistId=this.classDetail.students.map((student:any)=>{
     return student['_id'];
-   })
-  //  console.log(this.updateClassForm.controls['classTeacher'].value)
-
+   });
     await this.classSv.updateClass(this.classDetail._id,studentlistId,this.updateClassForm.controls['classTitle'].value,this.updateClassForm.controls['classDescription'].value,this.updateClassForm.controls['classTeacher'].value,this.classDetail.isOpen).subscribe((res:any)=>{
       if(!res.error){
         this.getClassDetail();
       }
-    })
+    });
   }
   async createAttendance() {
     await this.attendSvc.createAttendance(this.Id, this.classStudentList).subscribe((data: any) => {
@@ -142,17 +145,17 @@ export class ClassDetailComponent implements OnInit {
           throw new Error(data.data);
         }
         else {
-          alert("Create Attendance Completed")
+          alert("Create Attendance Completed");
           this.getAllAttendance();
         }
       } catch (err) {
-        alert(err)
+        alert(err);
       }
     });
   }
   async getAllAttendance() {
     await this.attendSvc.getAttendanceByClass(this.Id).subscribe((data: any) => {
-      this.attendanceList = data.data
+      this.attendanceList = data.data;
     });
   }
   getAttendance(Id: any) {

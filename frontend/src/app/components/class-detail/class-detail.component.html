@@ -135,7 +135,7 @@
             <td class="items" [class]="attendance.isOpen ? 'text-success' : 'text-danger'">{{attendance.isOpen}}</td>
             <td class="items">
               <button class="update" (click)="getAttendance(attendance._id)">DETAIL</button>
-              
+
               <button class="update" *ngIf="attendance.isOpen" (click)="closeAttend(attendance._id,attendance.isOpen)">CLOSE</button>
               <button class="delete" *ngIf="this.auth.user.role!='teacher'" (click)="deleteAttendance(attendance._id)">DELETE</button>
             </td>
@@ -249,7 +249,7 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Teacher</label>
             <div class="col-sm-10">
-              <select class="form-control form-control-lg" formControlName="classTeacher">
+              <select class="form-control form-control-lg" formControlName="classTeacher" >
 
                 <option *ngFor="let teach of teacher" [value]="teach._id">
                   {{teach.fullName}}

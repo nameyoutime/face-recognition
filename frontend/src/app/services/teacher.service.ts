@@ -34,7 +34,6 @@ export class TeacherService {
         fullName: name,
         role: role
       }
-
     })
   }
   deleteTeacher(teacherId: any) {
